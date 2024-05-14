@@ -1,0 +1,812 @@
+<head>
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-8BBFWThv4GyxDJGwM6J99gGCEPuhP2lU5D1nqDcX1T94gP5Q9jH1r9BX0xTC4gpE+Kg8naQSwwGF8JEWYVxgMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <link rel="stylesheet" type="text/css" href="../css/style.css">
+   <script defer src="activePage.js"></script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title></title>
+    <style>
+    aside a.active {
+        margin-left: -15px;
+        width: 900px;
+        background-color: #ccc; /* Change the background color to indicate the active state */
+    }
+</style>
+</head>
+<body>
+
+    <div class="header-container">
+        <header>
+    <div class="logo-container">
+        <h1>ChatCo Calumpit</h1>
+    </div>
+</header>
+
+
+        <nav>
+            <a class="" href="../index.php">Home</a>
+            <a class="" href="../about.php">About</a>
+            <a class="" href="../service.php">Services</a>
+            <!-- Add this line in your navigation -->
+<div class="dropdown" id="manageAccountDropdown"> <!-- Add an ID to the dropdown -->
+    <button class="dropbtn">Manage Account</button>
+    <div class="dropdown-content" id="dropdownContent"> <!-- Add an ID to the dropdown content -->
+        <a href="#changePassword">Change Password</a>
+        <a class="" href="../security">Additonal Security</a>
+        <a href="../logout.php">Logout</a>
+    </div>
+</div>
+<!-- Add this modal HTML structure after the <body> tag -->
+<div id="changePasswordModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Change Password</h2>
+    <form id="changePasswordForm" action="index.php" method="POST">
+      <label for="currentPassword">Current Password:</label>
+      <input type="password" id="currentPassword" name="currentPassword" required><br><br>
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" name="newPassword" required>
+      <input type="checkbox" id="showHidePassword"> <!-- Checkbox for hide/unhide password -->
+      <label for="showHidePassword">Show/Hide Password</label><br><br>
+      <label for="confirmPassword">Confirm New Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+      <input type="submit" value="Change Password" id="submitBtn">
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+// Add this script
+document.getElementById('showHidePassword').addEventListener('change', function() {
+  var newPasswordInput = document.getElementById('newPassword');
+  var confirmPasswordInput = document.getElementById('confirmPassword');
+  if (this.checked) {
+    newPasswordInput.type = 'text';
+    confirmPasswordInput.type = 'text';
+  } else {
+    newPasswordInput.type = 'password';
+    confirmPasswordInput.type = 'password';
+  }
+});
+
+// Get the modal
+var modal = document.getElementById('changePasswordModal');
+
+// Get the button that opens the modal
+var changePasswordBtn = document.querySelector('a[href="#changePassword"]');
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+changePasswordBtn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Add Confirmation for Password Change
+document.getElementById('submitBtn').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent form submission
+  var confirmChange = confirm("Are you sure you want to change the password?");
+  if (confirmChange) {
+    document.getElementById('changePasswordForm').submit(); // Submit the form if confirmed
+  }
+});
+
+// Function to check if passwords match and change border color accordingly
+document.getElementById('confirmPassword').addEventListener('input', function() {
+  var newPassword = document.getElementById('newPassword').value;
+  var confirmPassword = this.value;
+  var confirmPasswordInput = document.getElementById('confirmPassword');
+  
+  if (newPassword === confirmPassword) {
+    confirmPasswordInput.style.border = '5px solid green';
+  } else {
+    confirmPasswordInput.style.border = '5px solid red';
+  }
+});
+
+// After form submission, prompt user about staying logged in
+document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+  
+  var stayLoggedIn = confirm("Do you want to stay logged in?");
+  if (stayLoggedIn) {
+    window.location.href = "index.php"; // Redirect to index.php if user chooses to stay logged in
+  } else {
+    window.location.href = "logout.php"; // Redirect to logout.php if user chooses not to stay logged in
+  }
+});
+</script>
+
+
+
+
+        </nav>
+    </div>
+<br><br><br><br><br>
+    <div class="container">
+        <aside>
+            <h2>
+            Ayessa&nbsp;Bulaong</h2>
+            <ul>
+                <a class="" href="../index.php"><li><i class="fas fa-qrcode"></i>
+                    <span>Dashboard</span></li>
+                </a>
+                
+                <!-- <a href="company.php"><li><i class="fas fa-building"></i>
+                    <span>Company</span></li>
+                </a> -->
+                
+                <a class="" href="../user.php"><li><i class="fas fa-user"></i>
+                    <span>Users</span></li>
+                </a>
+                
+                
+                <a class="" href="../vehicle.php"><li><i class="fas fa-bus"></i>
+                    <span>Vehicle</span></li>
+                </a>
+                
+                <a class="" href="../destination.php"><li><i class="fas fa-map-marked-alt"></i>
+                    <span>Destination</span></li>
+                </a>
+                
+                <a class="" href="../dispatching.php?month=*&day=*&year=*&submitted=true"><li><i class="fas fa-business-time"></i>
+                    <span>Dispatching</span></li>
+                </a>
+
+                <a class="" href="../announcement.php"><li><i class="fas fa-bullhorn"></i>
+                    <span>Announcements</span></li>
+                </a>
+                <a class="" href="../report.php">
+                    <li><i class="fas fa-file"></i><span>Report</span></li>
+                </a>
+
+                <a class="" href="logout.php"><li><i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span></li>
+                </a>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </ul>
+        </aside>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>Reports</title>
+</head>
+<body>
+<style>
+        .wow2 .div1 {
+            padding-left: 50%; /* Add padding for better visual */
+            padding-right: 50%; /* Add padding for better visual */
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            display: flex;
+            justify-content: center;
+            width: 90px;
+        }
+        .wow2 .div1 a {
+            text-decoration: none; /* Remove underline from links */
+            background-color: skyblue; /* Set background color of links to skyblue */
+            padding: 5px 10px; /* Add padding to links for better visual */
+        }
+    </style>
+<main>
+
+    <div class="wow2">
+
+          <div class="div1">
+            <a href="cashier.php?month=*&day=*&year=*&submitted=true">Cashier</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <a href="dispatch.php?month=*&day=*&year=*&submitted=true">Dispatch</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="vehicle.php?month=*&day=*&year=*&submitted=true">Vehicle</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+        </div>
+    </div>
+        <br>
+    <div class="wow2">
+        <h1>Reports</h1><h2>Dispatch</h2>
+
+        <!-- Form for selecting date -->
+        <form method="GET" id="dateForm">
+            <label for="month">Month:</label>
+            <select name="month" id="month">
+                <option value="*" selected>All</option>
+                <option value='01'>January</option><option value='02'>February</option><option value='03'>March</option><option value='04'>April</option><option value='05'>May</option><option value='06'>June</option><option value='07'>July</option><option value='08'>August</option><option value='09'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>            </select>
+
+            <label for="day">Day:</label>
+            <select name="day" id="day">
+                <option value="*" selected>All</option>
+                <option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option><option value='26'>26</option><option value='27'>27</option><option value='28'>28</option><option value='29'>29</option><option value='30'>30</option><option value='31'>31</option>            </select>
+
+            <label for="year">Year:</label>
+            <select name="year" id="year">
+                <option value="*" selected>All</option>
+                <option value='2024'>2024</option><option value='2023'>2023</option><option value='2022'>2022</option><option value='2021'>2021</option><option value='2020'>2020</option><option value='2019'>2019</option><option value='2018'>2018</option><option value='2017'>2017</option><option value='2016'>2016</option><option value='2015'>2015</option><option value='2014'>2014</option><option value='2013'>2013</option><option value='2012'>2012</option><option value='2011'>2011</option><option value='2010'>2010</option><option value='2009'>2009</option><option value='2008'>2008</option><option value='2007'>2007</option><option value='2006'>2006</option><option value='2005'>2005</option><option value='2004'>2004</option><option value='2003'>2003</option><option value='2002'>2002</option><option value='2001'>2001</option><option value='2000'>2000</option>            </select>
+
+            <input type="hidden" name="submitted" id="submitted" value="true">
+            <!-- Hidden input to detect form submission -->
+
+            <!-- No need for a submit button -->
+        </form>
+
+        <!-- Table for displaying cash transactions -->
+        <table class="table">
+            <tr>
+                <th>Date</th>
+                <th>Plate No.</th>
+                <th>Driver</th>
+                <th>Conductor</th>
+                <th>Destination</th>
+                <th>Status</th>
+                <th>
+                    <a href="#" id="printSelected" class="btn btn-success">Print</a>
+                </th>
+            </tr>
+                    </table>
+    </div>
+<br />
+<b>Warning</b>:  Undefined array key "*" in <b>/home/u322369077/domains/chatcobusmanagement.com/public_html/secretary/report/dispatch.php</b> on line <b>240</b><br />
+%PDF-1.7
+%âãÏÓ
+5 0 obj
+<< /Type /Page /Parent 1 0 R /LastModified (D:20240422045402+00'00') /Resources 2 0 R /MediaBox [0.000000 0.000000 595.276000 841.890000] /CropBox [0.000000 0.000000 595.276000 841.890000] /BleedBox [0.000000 0.000000 595.276000 841.890000] /TrimBox [0.000000 0.000000 595.276000 841.890000] /ArtBox [0.000000 0.000000 595.276000 841.890000] /Contents 6 0 R /Rotate 0 /Group << /Type /Group /S /Transparency /CS /DeviceRGB >> /Annots [ 4 0 R ] /PZ 1 >>
+endobj
+6 0 obj
+<</Filter /FlateDecode /Length 1286>> stream
+xœí_sÚ8Åßù÷±Ù(’lY²ßZ’tšì¶OÛöÁ‡°˜:N™ÌôÃ¯Áb¹VjC;±‘2Ã„?¶Ñ9º:þÙC‰´øƒ%P¸,nÿÂÇÏÅ¿Qq{SÜÆ½×8½`À8¡ë?ÜÀù G÷]ñë“/€ðÊ£J  F$£^ €nU”0ž€áNßR8Ká}ïôÍ5ƒñ]ïýþÍb›‡KàhÅÍ³£íÝï|(·|à&z\Ï|!¡@˜’IìÉ	ÅzyÆ!Kà|Ç^DûRˆ 
+©b­š B"Où
+N<½øiö”$>e+yÖhæ¡$…ºÕC{4SI”ô™àöhfLV„6õíÑ¼nk$ãØ´fuäšqlÛ¢Ç¶5šQlÛ¢Ç¶-šQlÛ"ÇvXjfôÈ5ãØ¶E3Žmk4£Ø¶E3Žm[4£Ø¶E2Ší€kÍüÈ5£Ø¶F3Šm{4ocÛÍ(¶­Ñ¼mk$ãØZ³äšqlÛ¢Ç¶5šQlÛ¢Ç¶-šQlÛ"Ç¶Òšý|>Žm[4ãØ¶F3Šm[4ãØ¶E3Šm[$£ØFógfVÎž¡ìx4£Ø¶F3Šm{4ocÛÍ(¶­ÑüèÀß(¹ÖtI
+ƒl»ÚÎP<Ë¹OŠcÕS’¯†~èŒàã‹³ÉÝ"Î‡·ð!Y¤Yßá*ç·ÞÀËÏ0¸,çîjØîWŸœ’úËWÚs“OšúÓúºk™lOwÚá+âs¶Úá—½çÉÆvØ9Cö§­;r+ X5ñÝ´pþJ‰s²V5âÃ£³É·$s6Ö²¡Vmì§óÑý0O“µœ¬œß0
+2¹Ë'ó8Ÿ¤sçe/+çÇª^^çq~÷œ6:6ØÉÒ+ûkCjÉ°ØëýQä5÷P¯µ´ñB›_6žy‘"î»QÛnÌ*8¿*t66%ÃÆóY’ÅSgcS²q6þ¬1l|ãûò´¥¹^™(Pö«¤húCìp¬1Ž5ÐçÃäY‡’Ã±DãëþòŽñ®à×£–—§<2¢ÜÚ:>b3«ÀáXm1Ž6^¥F$·)\Æ³äYI;d'Â2ÃÎW}gaS®1,ì’áî¬‰‘ÉŒø{~2È&Çdíê1„5LwÓ•g›Sd~KÇ-þF”¶TŸ"[3™Ü°­ã#f2£
+.ÿ¼ÁÛ6†2ÃGGÍAÌ°póx>§Ó¶Æþòq5¾MÜG–umÄ4f”@?žÞÏ“¼(iÖ€CÉ&Fb”4ªà,YÄYžŒK¶«ËŽ©²Çh¸eIt…%Ui<£S‘PnÜÖñ_™Á¨Ç’|ÄWõ0G“>ÁçŒ¬e$¢2ÃÈG‰ÒYYnÌšÔpÓ23~ƒ•í­Ç7-¨ „BW¿ÒG÷‹˜ì
+ßxºú¥þü2Œ|yn:Yc¾1ª ÿêm‘‹Žoóá£ã›FF"¾1Œt|³?"˜5Ù)¾1ÞñÍoèøf'"p]ýAù†êê×“™q/b¢½Õß&1ßUàø¦˜oÿyÈ&S·KnL7†ŽnöÃÊnÑ‘ïí§›6‰¯„nTÁÑMÑ:ø—ºöØ ÷xŒå‰ÕŒp¾¾S~»>]&Y2‚/0è¿;»€O/–Ë%É‡‹ÑI³ñ§—ÿ_7â€ŸøêÕ¼ÞE£_-; =ÿï|
+endstream
+endobj
+1 0 obj
+<< /Type /Pages /Kids [ 5 0 R ] /Count 1 >>
+endobj
+7 0 obj
+<< /Type /ExtGState /CA 1.000000 /ca 1.000000 /BM /Normal /AIS false >>
+endobj
+3 0 obj
+<</Type /Font /Subtype /Type1 /BaseFont /Helvetica /Name /F1 /Encoding /WinAnsiEncoding >>
+endobj
+8 0 obj
+<</Type /XObject /Subtype /Image /Width 1414 /Height 2000 /SMask 7 0 R /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length 82756 >> stream
+ÿØÿà JFIF      ÿáExif  II*                °       ¸   (              i‡    V             0231‘           0100     ÿÿ       †       Ð  †’ <   À       «      «      ASCII   xr:d:DAGAMcbWyAQ:62,j:2060819721757905640,t:24032614ÿáhttp://ns.adobe.com/xap/1.0/ <x:xmpmeta xmlns:x='adobe:ns:meta/'>
+        <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+
+        <rdf:Description rdf:about=''
+        xmlns:dc='http://purl.org/dc/elements/1.1/'>
+        <dc:title>
+        <rdf:Alt>
+        <rdf:li xml:lang='x-default'>Silver and Blue Geometric Quarterly Report - 3</rdf:li>
+        </rdf:Alt>
+        </dc:title>
+        </rdf:Description>
+
+        <rdf:Description rdf:about=''
+        xmlns:Attrib='http://ns.attribution.com/ads/1.0/'>
+        <Attrib:Ads>
+        <rdf:Seq>
+        <rdf:li rdf:parseType='Resource'>
+        <Attrib:Created>2024-03-26</Attrib:Created>
+        <Attrib:ExtId>287d2723-de12-40b7-b0f1-8cbe724da8de</Attrib:ExtId>
+        <Attrib:FbId>525265914179580</Attrib:FbId>
+        <Attrib:TouchType>2</Attrib:TouchType>
+        </rdf:li>
+        </rdf:Seq>
+        </Attrib:Ads>
+        </rdf:Description>
+
+        <rdf:Description rdf:about=''
+        xmlns:pdf='http://ns.adobe.com/pdf/1.3/'>
+        <pdf:Author>Ayessa Mae Bulaong</pdf:Author>
+        </rdf:Description>
+
+        <rdf:Description rdf:about=''
+        xmlns:xmp='http://ns.adobe.com/xap/1.0/'>
+        <xmp:CreatorTool>Canva</xmp:CreatorTool>
+        </rdf:Description>
+        
+        </rdf:RDF>
+        </x:xmpmeta>ÿÛ C 
+
+
+		
+%# , #&')*)-0-(0%()(ÿÛ C
+
+
+
+(((((((((((((((((((((((((((((((((((((((((((((((((((ÿÀ Ð†" ÿÄ           	
+ÿÄ µ   } !1AQa"q2‘¡#B±ÁRÑð$3br‚	
+%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyzƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚáâãäåæçèéêñòóôõö÷øùúÿÄ        	
+ÿÄ µ  w !1AQaq"2B‘¡±Á	#3RðbrÑ
+$4á%ñ&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz‚ƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚâãäåæçèéêòóôõö÷øùúÿÚ   ? ú¦Š( Š( Š( Š( Š( Š( Š( ŠŽyâ·ŒÉ<©¬ìÄ×â?Š¾ðþñ­Û_á„™Oþ;š¾ÀwWÏÚ×í;áËRË¦é·×Ç³"þ¸5ÈßþÔz©ÈÓü?h ô3;ú5uSÀâjüÛùä—SêüÑ‘ë_Ü~Ò~1˜–ºt?î†?ÌÕ_øhŸg;ìþ›+¥dø×ÿ .ßà/içÛWÅð~Ò>2ˆåíôé½™X*Ý°ý¨µ•À¿Ð,œw13úµL²œdw¦ÃÚG¹õóÆûOèW&§¤_Zî¤2þ„šô|_ðV¿±lõ¨#‘¿‚pcÇâÀ
+â©F¥='½QI§±èT6·v÷q‰-gŠd?Å†˜©«1…Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@•â/i~Óä½Öo"µ·A’Îzý|Áñ3öŽ¿¿y¬|ÙmNTÞJöÿ ts®kzz¸‰rRØ›Ksèÿ xçÃÞµiµ½NGÎÇÓ5óçŒÿ i»‰ZH<%¦Ó87XÏÔ(Èüëç=FúïS¼{­Fæk»—92LåÛó5n=T—MþÐK)šÏ8ó@ãòë_K†áèA)b¥ò_æc*¿Êiø›Çž'ñ,Í&¯¬ÝÈ¬q¹?%À®i»ªYSŒší.|x}.­ï]D[¥ÓÛìù|¶ÏÝ=I9ü+¯·ƒMðÕ¤éû›kkFX¥ºkdži¥ €Ý;×£˜L*K»ÛMôüLÛosÉltûËù;Kyft˜ ÎZÑôKX¹–V’H†\onIÇ~+Øâº¶³ƒTûJ,‰ÍíˆòŒ‘dÂã£u‚«]Ý‹·5í¼Cd‹{q-¿n'"FJ=A¨y´å¤!¾‹ÔVG‹\ÚÍmtöÓÆÉ:1FCÔã·sàírÞI^ÉŠÜ¨”œ‘Ï žj“^OªøƒíSe¦žà9 g’ÙÀ¯p³ßj’"â#Ó8þµÕÆÏË¢×q+A/üA;¬3îÍþMX¿Ù·ÙqöKílFN¥{…mãþÃÒKirÛ\4Jÿ kuMŒHûå‰Î?
+m½ã6¡®£¨=¹¢æCBK3äãýÑÖ¸¡œTånQL:\ðwG¶¸eoB1M  W¸x‹NÒî‘[Q±3XÍÇœ±ˆ|ýß,i•äÊy>µ‰ªxÆTEX'Òîäºþd.ûwl,NA#»×RÍ(M(ÕV¿ÍÇáïx‡ÃÓ¬ºF¯yÞˆd,Ÿ÷Éâ½§Á¿´Î©fc‡Å:z^ÅÀ7øWü¸â—Ö ÒäÔ$³qkgÈã´œzgŠÂ©¯”`ñI¸«>ëú±j¤¢~†x+â?†|an¯¤jP´Ä|ÐHvºŸL¿…v5ùkq5¥Â\ZM$¡ÊÉaøŠ÷/†¿´>³¡´6^)VÔôñÇž?× ÿ Ù¿_7Èëá¯({Ñòßî6TÏ±¨¬ø»Fñn›æ‡{Äl2T™O¡½^! QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QEŠ +Ëþ.|_Ñüjöñ²Þk.¿»µFû¾ì{
+å>;|n‡Ãk>‡áyV]ke˜­¿ÿ eü«äKÛ»‹ûÉ®ï&y®fmÒHç%{fSSùå¤;÷ô3EwÇ4Öüm©Ízí¦Ús þî!ègø{GŸ[Õ#´€„,ò7DP2I®³Á¾¶’ÎÝJ»–è3[Z«ì9‘Û
+0{v®òÛÂ±ZM–1YÁ%õ£¤ñC0m«»(ê1ÐáF}ëèþµ‡ÁEÐÃ«5ùþ¬ÁÞZ³˜_h©f&]?R¹³“zkþøºþ5´,n­-4	,5fŠÚ7û(º_¸ð¾<¶eÏ¢œŒÕ ‘Åâ2öòÿ ìö0­µÍ›šP«µLc#plf£Õ5›]ÊÓGÕ`•!¸Y^[u8’ÙX©ñwæÊUq6‚—3jþŒÍ­jæ]2ûIQÓ`†;yÖ{«Na–'ÚÆÇOz‡V´¶Ô/µ+]‰wÎ¦êÔK²Xe†^9R6út®TñÍêøŽöûE’Kh'?4nw÷aë\•þ¥5Õä·Ws³ÜJw;É5×O-•5ÏV|½oÙÐôïêÐiúMÜà[Ëˆ’ÖX_Ìò!VÝ—l˜’Üc½g]x»KŸÂ²ÄVsªMh¶_Ýá\0mÙô cçfs•F>æ“÷Çº¯ë]4èÐŒRŠ”Úwº]}tC³êt¾	× Ðu¤»¹¶ó“iPAÃF¼¾õÕ'ìá½0Çkpö3–7SK)i¥cüYíŽx÷¯0Ù'y!G–ÿ óÕ«j´UióÎ“½­ºÿ 1|Ïa¶ñ†–!»šêîÚÄB	¬•‹ è»÷d}qZÖ~&Óžêú}&þÑb½Ùˆ'œÛÉ\á äs^²NÒþb—÷ãø•«’xZÎ_sýBÝ™ô.©kå„¤×>ašîhŸ?fXÀq>¹Î:u¬‹iz¾§moos{{/›½a{qÎ0dwÜKmQž«ÅVîxâhÎñ}à§ƒZþñhz°º1,èÑ¼O;IVR§±Á¬Ö¥y^]÷1Û©ìÖçPÕöVDÒõ7“L‰Ià`1Ýô.¹ük'PðÎ™u¦K¦ØÙÁÁ0·Žð¹Tù®Çº†Vð¬Í+Äiâ/í;–9$ûI&6R¹ù½p	®¶òÕd·Ó4"â!=ì$¼äåvšLzîpÐ×U°r´ºüÿ Q#ÌõOKöw»Ðn“T³N\Æ1"{•ôük‘ ƒÏ¾‰¸º‚ÊÞÊûQÓmÖ[9#·‰à}¢A‚>SŽ:r¼ýx®CÇþ—Y™ît,é}=¼¢Ò?“
+FÒ}Zõ0Y”›P¯×¯§på<óÂž%Õ¼)ª®£ Þ=­ÈÆí§åqèÃ¸¯°>|mÓ<eZv®RÇ\	ù&÷Sëí_k:Mîzmu	€µ‡P{Š¥©$NÉ"ÊêpTŽâ§0Ééc#íhé/Áÿ ]Ë…GúvGWÍ?>:}©­ü?ã)Õn#¶½c€þŠÙïïô¯¥Uƒ(*r5ñU¨Î„Ý:ŠÍ	§ªŠ(¬†QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE à?´OÆáØ%ðï‡&Y‘q4Êsöu?û7òÅtÿ >&Åà_{WÖï­¼}vî1_ÝÜÏ{u-ÍÜ¯5Ä¬ZIä±¯c)Ë6|Óøþ~Fu'Ê†I#Í+É+³Èä³3–>µÙÉàe"‰õ›8õŒIöy~E ôÉÆjK_¥Æ•dÉ¨"ê7ùÐÄë¶7üÏË»Ž™î+±Ðuµ‡Lž÷IKë¢¤Ü[\¿½ä£ÆÎ¼ûWÒbñ¾ÊšXV½×fŽgÝ’èöš•Ž™¦Í6<¿`‰­n¢Ky‘,$B>ðŽž†®_ÉetÐ_XC-¬Öò	gÔf¡UŒ)0ßxœã°­üO¦øSPž(õ=Aîc&Š"ˆ#`Ü	À'®{Wšë~ ¿Õ]ÍåÜ­âU	À<µÅKS'R§»þýÆojÞ<ÕN¡x4«É#²iXÀAdLðÇ¥q×—²\Ü<³ÈóNç,IÉ&›½ÕÚæ&hû”BßÊ¬&›vƒeuÿ ~[ü+Ò…zWµ¢»»]ú/Õþ#³êRÛ#ýöÚ==cEè?¹ýŸyÿ >w_÷å¿ÂìûÏùóºÿ ¿-þ¼>«Ìæ›îÚoþÈ^ñVŠµýŸyÿ >w_÷å¿ÂìûÏùóºÿ ¿-þÑõª?Î¾ô+2­kû>óþ|î¿ïË…Ù÷Ÿóçuÿ ~[ü(úÕç_z2­kû>óþ|î¿ïË…Ù÷Ÿóçuÿ ~[ü(úÕç_z2­5‘[ïW?³ï?çÎëþü·øQýŸyÿ >w_÷å¿Â¦UðóV”¢×ª™@#Æsþº¿øÒkc°Õ!v
+r¨çõFì~¹¬?ìûÏùóºÿ ¿-þ¦Ý°ÃY]ûbßá\UiÐqå„Õ»7uòê¾_põêM¶½³ñ‡ˆ-¥‚É-ôËs3£¶ù®H*ðLúRxƒ[µÑ§™uˆç»Õ®œÜÜ[$»`›øHÆIëžkÌ þÒÒ%­Ôã~Ò¤~4û$—WÔbÍÝ4î|Üú“\ô¨P¯4¤ôŠøoøßª	#vfÔ¼q­ÄAB(„j«•Ž×<’O dòMRñ‡/4?*IŒsÚÍþªâzŒŽ3í^‘…¦•¦_Y¤r7Ne„‘©óîä=ªœuÇs“V^}COÉd,­ïì¦ìŽqF¤¬£<®p3ŸJ#™8I{8þíh+& G ŽÕõìçñÈÐxcÅW9“îYÝ9ûÞˆÇ×Óð¯™î¬®m‘dš	’''c´d+ý	ëPFíŠñ±GRXGzéÌ²èc©Ý|KgúqgéØ¢¼7öoø§ÿ 	V–4=neÍš ŒÇ|c€~£Š÷*ø
+”åNNVhëNú…QPEPEÔñZÛKqs"ÅHd’G8UP2I>€Pz…í®e5æ¡s­¤+¾I¦pˆƒÔ“À¯ñWí5à"wƒKŽÿ Y‘N7ÛÆ,ÿ ¼äõ ŠùÃã¯Å{ÿ ˆ¾ –+ye‡Ã–Òijã5Çv=û àw'á¿ÂÏüB‘Û@²Qgm’öå¼¸U½3‚Iç¢‚hßSöµÓÌ˜	]ýEê“ùlþµÜø7öŒð7ˆ®#¶»¸¹Ñn\àô?õÑIêØ¯—öPñ0·-¿£4øû„JþúÚ•x×¼	âê‹câKnÒÐÌ§|SÔ£lŽ£# Pé\n²"¼l¬ŒVSAî+„øé¯ê^øU¯k:ÏÙuUˆÅ7–¯·tÈ§å`AáˆäW€~Èß/`ÖãðN­4“Ø\«5ƒ1ÉÔ(÷XqØŽ:×µþÓòC|QþäúQ |Éá_/¼K¤Ú]xˆ=¼÷pÅ"ý†ØnVpÈ#ƒ_u×æ/‚¿ärÐëþßÿ F-~PEPEPEPEPE|OûKx÷ÅzÅ­{GÓ¼CªYéq½µÃD£u¼l~éä±<ú×©þÆ7·WÞñ××3\Ìu—šBíþ©{š úŠ( Š( Š( Š( Š( Š( Š( Ë"CÉ+ªF€³3©'°¯ñíà_O%µœ÷:ÕÊ° 1ƒÿ ]€~«šðŸÚ[âý×ŠõË¯hWM‡lä1ÈÑ¶>Ù"žX‘Õè:gÓcà ø‹Çº“ÙønÁ§òðfÎÈ¡¦æ=:9'° £öµ°ó0¾º1ÿ xÞ¨?–Ïë]g…iŸë¤¢_è²±Æû˜ÃÅŸ÷’>¤^Uì¡âcmº]FYñ÷ ”®ÞÚ?•yWÄŸ…þ'øy4cÄhm%m±^[·™ŸLà}˜@¢¶7v×öpÝØÜEsk2‡Žhœ::ž„Á=|3û0üL½ð§Œ,ôÉ¤—AÕf˜‰È‚f8YÓ'½Ž{WÜÔ QE QEÂ|s×õ/ü*×µçìºªÄb›ËWÛºdSò° ðÄr+äÿ |zø‘{âM&ÖëÄAàžî(¤_°ÛÊÎäpkéÏÚkþHwŠ?Üƒÿ J#¯„üÿ #Ž…ÿ _ðèÅ Óº(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€>Uý¦>3x“@ñ¤žðµßölVqF×ŠÒJî¡ÀÂ…+ÓœçšÒý—þ0øƒÅ~!¹ðßŠ®ûý®-®Ê*È
+‘”m 0r3Ç|ñÖ|nøiñXZÓõ/ìÍ[ËX¦ß™ê¿tœCÆyÈŽõwàwÁ+/†—7:•Æ u=bâ?'ÍyqÃ £$’H'Óä×è¢¿;<yñÆ7Þ"Õ­®<O«›hîåaK§D
+€6©¥ ~‰Ñ^kû8K$ß<3$ÎÒHÑÊYœä“çÉÔ×¥PEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPEPXž2ñŸ…¼9{«j†Ý`ÿ ìm“_~Õ>:ßˆSÃztÙÓìéÊž$—?‘]\<±5cJ±IÙ\ò?x¢ûÆ>%»Öu&>dìJGž"NÊ+Oáî•§j-~×¶æòæ$@û£ÄŽGïY>Ðÿ ¶õÒ˜,âC-ÄØÎÄjÏ‹4ÅðÞ³n4Û›…ß
+N…þIb'<t<v¯½TéÓ§õ*2³·õ÷œÝÝžck¦b\é¶—woa	wRÊŸ¼³QÒ4Îã‚3Ó¥^iº…®&½–×W‰dŠ[)9upq éŽ¾•Ìø{Æ¶ÜEu­·¾Œ,° )wê’!ã=yÇzóÝ^â	µ™­£ò g,‰è=+Ï¥—Ê¤äñ7VÖý.âj÷ÆöþæòUTiœ¹Uè2zUS!'NËB)‘·¿Oá0×©û{JzAl»ù¿Ñ}á±îŸ®n,¾k“éíW¨C
+Ìð¤…œn½ŽOx]‡ü%‘ðèÿ ¯øP1ð§Wÿ °­¿òzú®ãýkýM|>ÏSÕþgT~y¹ðgˆÇüÍqà¾þ7H|â?úâÿ Á|ün½©†¹,;œü!Þ$ÿ ¡®/üÁÿ Æèÿ „;Äô5Åÿ ‚ø?øÝwÔ
+Vœðoˆÿ èk‹ÿ ðñºxð_ˆÏüÍ‘à¾þ7]è©€¹À¯‚<Fælÿ ðñº‘|	â3ÿ 3lø/ƒÿ × %XJyØøâ3ÿ 3tø/ƒÿ Ó×áß‰üÍ©ÿ ‚ûþ7^•[Š€<³þÏ‰?èl_üÛÿ ñºFøuâ@	ÿ „±8ÿ ¨}¿ÿ ¯X¦Ë÷é@)üR{‰þ]¶¤ð\^Ûkokö…#,ªdîé_6á£I	*ãœ
+úSâÏÁÍgþÆI¿ô)+çR9¯­È!
+˜yF[ßNût0«tÎÿ AñÕ½ÄU®-ïã]ŸmU‹¯÷dVÈ8õÆy®Ñîl´Ý>Iü‹ÍKU¼Ì1È3!ŒtÜ„N¼Íx4ŠTù‘ýîãÖ½[À/ÔµkèíÜÂÞÚG,ˆ«,û•BÝO#Ï9­1XN[ÙZKWæ»¯>ë¡Ÿš:=CN3é1ÿ k]¥õ– V6VÖF !Æv‚>µâºµ“éÚ•Í¤‡-Œ™õÁÆkÛ¡ÒítX­fÕÒæ'E3Ÿ:V1ù¬Ä@œ°zŒf±¼Eàïí\j–º[ZÞËD$Ÿ2Î¸ÜÅ”œçŒ·¨K’oF+\òýW¼Ðu›MON•¢º¶pêTõõ¿@>xÎÓÇ>´Õ­J¬ŒÏëƒ¨üó_ž.¥«{W¬þÎ>=xÊ;¹HÒu&Ê	â7þþA—©Ãë4Ö«Næ”¥m÷ŠC AÈ¥¯Ž:Š( ¼wö¯ñšÂÈmÜ¤Ú¬é`ëµ²ÏøB¿ð*ö*ù«öß‘‡…ü3ÎÆ¼•Ô Çó4ò‡t©µßiºM¯ß\Çl‡Áv
+ë_¦Ðì|7 ØèúL+•œB(Ô¸êO©'$žäšüÿ øËñ—Âjà/~!I¨ú'@r?|	§|Cð¬º.¦Æ½e†å3Âàõ\úŒƒìk®¢€8ÿ ‡|7ðþÃìþ±U—^K‡žo÷›ÓØ`{W?ûMÿ ÉñGûéDUêåÿ ´ßüß¹þ”E@xbêi7w-¶{¸¥‘€'
+®	8Â½_ãÇ¯x·U¸µðííÎ‘áôb‘%»˜åœzFóýÐp\õ¯Š7šTŽ%-#°UQÔ“ÐWè‡Â…ú€¼=i66Ójæ57wÏi$“á!AàÛß&€?? ×µ{{=¾«àçÌK‡VÏ®AÍ}9û2ükÕumv	x¾í¯^áOØoeÿ Y½F|·oâÈóž9ÈÇ[ûYø+I½økyâ¬ ‡UÓd‰ÅÄhäF‘Q‘ˆê>pyéŽ:šùáÍÜ–|5uxµ+g×U Ó"@žƒšùâïí+©Ý_\iža²Š6¡,`Í)ŠÃ¿P[ýÞ•õíxWˆgM]øŸ7ˆn§1è—Ï¸ÓbL—üß0û¨zœs’qŽÀ_x‹ÄÚýË=æ­«êNû‰$?–x&ãxzìI¥ëº¥”ÈyT¸p>Œ¤àý¯ÑÝ;OÑ<+¥,ö:NŸÆV$äñÏ¹¯‘ÿ kßxOÄ¶‹‡n-/µKa(¼ºµÃ.Ó·b17sÆ€=§öpø±/Ä]êÏZ®¿§2´cjÜFxØä`Ç Ž¸×í‘®jÚ&‡á§ÑuKí=å¸˜HÖ—	ppÒ3^QûNñ|\’4b]6eaž 2æ}·qmÈâ¥Ð:Çç@—Z–¡yª^Éy©ÝÜ^]ÉóÜHÒ;` 2Ä’p AW4kš$/­jz|R6÷KK©"Vlc$)5ÞþÓñGÇGicìØTý.Õí¿±]¥µÇ‚uæ¸·†Vˆ º#÷kë@oû3x·Äz¯ÆMÓTñ¯{hñÜ†âöI±‘•f àŒ×Ú:¶£i¤i—ZŽ¥p–ÖV±´³Jç“O†ÆÒ	ÚÁŽŒ‘€Gã_;þÚž'šÃÂú7‡­¤*5)ž{Œ±Å·
+}‹0?ð
+ ó/ŠŸ´_ˆüE}=¯„ç—DÑ”•G‹‹™‡÷™ú§ÑqŽä×\ëºµÔÆk­RþiIÉy.›ó&ºŸ‚ž
+O|DÓ´[†t±ù§»d8o)H„œ.{nÍ~h¾Ñ4M9,t&ÊÒÑhŽ(T=û“îy4ùñá/Š~4ð­ÔréZýóD§&ÚæC4,=
+6@úŒzûwà¯Ä»?‰~7ÑÄ¶Ú«¯mAÈG#!—ý–ÁÇÐŽÙ®ãOìýcãBÃPð¢Ùh×­.Ëì&Øž3ÿ -(ûàý7g“Åz/Âï†ºÃ%­tXšK©‚ýªö^dœŽ™ìdáGêy Ÿ¼q¥|?ð¼úÎ°Å”.t?<òˆ¿‘$ö šø“Ç¿<mâë©sªÍ¥XòYéîbP=‡Ìÿ ‰Ç°®§öÃñ4Ú¯ÄÄÑCöMÝ <y²(vo®Òƒð¥ý”¾iÞ2×µ_Äëu¦i{-¤I¦l‘¸wU8îHí‘@*5PMæJôKœï¶ïÏ5é~;øÏÂ7qFmgL	-/ä2¿ìÈrÊ}9#Ø×Ý¯¡é/cö'ÒìZÏ|ƒn†<zmÆ+â_ÚáÍ|[ew¡Ãö}'VäHÝ†T#z¯û?2;dŽ‚€>Èð‹ô¿øb×\Ñ$-o7Êñ¿ß†A÷‘‡b?PAè«ã?ØÃÄÓXøßPðôŽM¦¥lfDÏhùÈú¡lý¥}™@pÿ ¼C'…¾xT·sÊ[y0¸ê²HDjÃÜÏá]Åx§í{#'Á»…\áï`VúdŸæ |. ³  ’x w¯Òo…>¶ð?t½Ú%I£‰^éÀæIØìO~x€Ú¿;¼#Íâ½) (÷°+gÐÈµú}@bx×ÃV>/ð¾£¡j©ºÚò"›±“uW_u8#é[tPž|/øEá‡,šm·ÚµR¸“P¹¥>¡{ ö‰5ÒøçÅZ‚ü/{®ëoÙ-TebMÌÌNGÔ2p+z©kZ]ž·¤Þišœ=•ÜMÑ·FR0ý}¨á¯ˆ_´ŒüSs,zmãè:a$$/¶B?Ú—ïôÀö¯3“P×/]Éw©ÎËLÒÈØú¶kìŸ†?³—‡¼/¨Üßø€Ç®Î&cgÉû¨£ÏÊYøëžaÞ½ƒVÖtOÙÕu?LµEãÏ•"P= $~B€??<ñgÆ~¾Šm?[»žÙH-gw#MŽãk>«ƒï_z|;ñmŸŽ<§kúz˜ãºOž"rb2¡žã½|ñ—RÐõ‰ºõÿ …cDÑæ™L;b±¡Ø/`Îþ5õìW;ÉðÇT‰É+­&Ìö(Ž?<ŸÆ€;ÚkþHwŠ?Üƒÿ J#¯„üÿ #Ž…ÿ _ðèÅ¯»?i¯ù!Þ(ÿ rý(Ž¾ð_üŽ:ýÁÿ £€?Nëä_ÚûÅ Ñ>#é–Ú.»ªéÖï¤Ç#Eiw$*XÍ0ÜB3€}…}u_~ÚßòT4ŸûGÿ £ç Ãö8ñ¹®ë>&MoYÔµŠÞÞ]<Á	fÉ‰Å}G_#þÃßòñ_ý{Aÿ ¡=}q@þÔþ-ññf{M#Ä½…¨³„6·²D€rv«šôØÛ_Ö5Û6·«j“C-°ŒÞ\¼Åg‰Æp:zW’~×¿òY.?ëÊäkÒ?aÏùx¿þºÚÿ )hÛ~4ÝÜØ|)ñEÕÄÖ×QX»G4.QÐú†ƒ_	è¿|Y±a%ç‹|@mRxÚPÚŒì6²7sÆx¯¹~;ÉñoýxI_œÔí?þ:k¾/Ö®m<=u¦xr&)
+[¹ŠK€?ŽB0yþï@1žy¯)´×õ‹;‘qg«jND‘\º°>¹5÷çÁÏ†º7ü%§Æ–ï¬I
+Éyvñ†‘¤#%CB‚p ôõ&¼—öÑð¶—oáýÄV–p[ê÷ìrÉ2«Fì7c©8>æ€*|ý£·…µ{\›ý>ßÎ²›%ç8òbù#æôÉ?t“â<ø«âïj3O©j÷PZ³•¬­1ŽÃh<ýNM`x@“Å>0Ñô8œÆoî’àgb“ó7à2
+ýðÇ„tiiº&—kmm8Œ“ÝÛ«êhó›Bñ‡ˆô´¹ÑõÍFÒe9ÌwƒìW8aìA÷/ì÷ñ)þ#ø>Iµ5«^Æò2’ÛpU=±_7~×^Ó|=ñÖ}"Ö+Xµ%¸–(”*ù¡ÙK 8sï“ÞºOØ‚w_xšÜåÉg„v%\ÿ ¡ ú+ãMÝÍ‡ÂŸ]XÜMmu‹´sBå¨aÈ5ðL?¼b&Bþ.ñÐÀŸø™MÓþú¯»þ;ÉñoýxI_œÔî>>ëž(Õ®,|'s¥øz2R7€˜¦¹ÿ m›ï(=”cŽ¼ôñèµÝZ+´Eª_¤ùÏ˜·?\æ¾ìøð§Fðg„´ùî´û{\Â³]\ÍwFaŸ-	û¡sŽ:‘“í³ñKáŽƒãÏÝÚÜØ[C©ùlmoR0²E&>\°ä®zƒÛß€>vøû@êÖÍ¦‰ã‹×¿Ò®Eôç2Û18›ø“=IäuÎ+ìjü¯ž-ç’”¤±±FSØƒ‚+ôWàV»'‰>økQ¸r÷ÛÈ‘Vh˜ÆI÷;3øÐ~×þ(×ô?ˆZM¾‹®jºt¥¤¥Ü«7›(ÜB	À>Õ§ûø“\×ußG­ë:–¢‘[DÑ­ÝÔ“%›$'Ê~Úÿ òR´û'þŽ–µaÿ ù|Sÿ ^°ÿ èm@~×(×ôo‰ö–Ú>¹ªX[.'1ZÝÉ2J	Â3ÀçÚ¾p–GšW’Wg‘Éfv9,OROs_©SÙZÜ>û‹h%|csÆãñ¯Ì€¾*ÖB€ ½˜ ;~ðÐúŒ<M¦ÙÇi§x‹Y´´ˆÁ},h™98PØ’ké?ØßÄZÖ·¬ø™5­cQÔR+xLkwtó%›$n'éß³}…œß<1$¶–ò9Š\³F	?¾“¾+Ô-í-í‹{xb-Ô¢Ïå@QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QEÆ|]ñd^ð6£©;qå˜à\òÎxãè	?…~}\O5ÝÔ·.d¸™Ì’1êÌNIüëß?k¿GÄö^·“0X(šeþZÇèÕâ^Òîõ}R(,U|Áó–s…@;“é_]ÃøeJ”±Së·§S
+²»å=/@ÐÓNð7:›i§]1–òU•¶ýÈÔ{†n¤t©.í¬üGj²\ãWµh¾¶náÿ ®‰ÀoûèÖÑžë9ïa×" ûTc÷–îñ8}ùë\®½¥Ec¤\k–k•}	_*k)³Æsœ§Ö¦œ½µW;µ&ôkUèec€ñ6•ý‹®]Ø	D¢Úwã5‹þºOöõ5-ÜÒHä³–CËÉ÷¡"…«ÞiÖ’¥'usy¾ß«ùÚ‹OS„8¦ ËWÄHEsæY•,,f›¿èT å±ì?	ùøS«ÿ ØVßù=}Wqþµþ¦¾VøX»~k tµ¿òzú¦ãýkýM|6.q©^sŽÍ³¡+$ŠíL4ö¦ç”
+( ñR-F*E 	’¬%WJ°”€³[ŠªEVâ d”Ù~ã})ÔÙ~ã}(åOŠ_òG5Ÿû&ÿ Ð¤¯œ±òú?âxÏÁí`ÔË7þ…%xÐ01^Þ]šGG•Æ÷wû¬g:|ÌÌ¢Úâ]>í.mã`AÊ}ió ²03Q ô5öSŠÄÒSŽuý~g>Ìõ«??ˆõˆ$Óíõi	.nßÌKTUù™ÈsÇ5¹8¾¸°:­…¬÷«	k}83‚^Có¾Oûà~äžñèW7q\Û›kˆ¼©>Æ+ìpq^¤yºzÎš[é‹ÀžúüˆñžÃg5àV£kNJ+{¾½S× ;œ¿áý_KU¹Õ-^5™ÎH ±äôïÖ±TAS‚Aô5íZ…¶‹¬èi¤iö“ÛÁ4…ã¼6Âóªœ~7s^1q–ó¼3)IŠ²ž Ž¢½Œ)c)¸Ík³^BóGÝ?³ÏŒÏ‹üjn¥ß¨ÙbÞã'’@á×šõ
+øö_ñ[h#Óæ“mžª,3Ç˜>éýM}¸9ð˜ì3Â×•'ÓòèuÅó+…Q\…xíŸ¥=çÃKø”Ÿ°jd>ˆèËŸûë`ükßëÇµñw„µ]ûˆo h·ã;ª¸ªÀÂ€?;~ë1ø{â‡uiÛl·ÐÉ+zG¸?÷É5ú\`
+Aä_˜)Ð5ø‚÷FÖ h/m$1ºž‡Ñî¤`ƒÜú+àŸío£è¶ºŽ’áâµA¾£
+ù„ à,‹Ôàq¸dôÈî@>µ¬ŸkÖ^ðÞ£­ê…þÇcM ŒÍŽŠ 2N Éšáfø÷ðÖ;c7ü$Ñ¸ÆB-¬åá³5ó‡íñËþûeÐ¼=Öº8’W›K¦w •çÉ8'Å }eà/ˆžñÝŸáÝN)¥UÌ–²|“Åþòqî2=ëœý¦ÿ ä†ø£ýÈ?ô¢*ù‡öVðu×ˆþ'Zj{dM;E?jšQò#Lú“Î=×Óß´ßüß¹þ”E@
+x1CxÃBVþ ïâ×éÝ~bø+þG-þ¿íÿ ôb×éÕ y‡í5ÿ $;ÅîAÿ ¥×Â~ÿ ‘ÇBÿ ¯ø?ôb×ÝŸ´×üï¹þ”G_	ø/þGþ¿àÿ Ñ‹@§ËÉ4Î±Å—wc€ ’kâ¯‹´gˆuÝJæÏÁ×/¤h¨Åh†.'ø‹u@z€¸#¹5õ‡ÅHç—á—‹#´ÏžÚUÐ@½Iò›ï_štê~øSñâ,j¿fºžÖo™/u;¬ø†âY‡¸Sþ,ü½øiá*ÿ WÔíî¯¯n‚Ù—œïlà"¾ÒðOŒ|5­xRÂûIÔìÌ[ 1ùÊ¦(ùò‘Ó¾Yý­¾"i~,Ö4½Ã÷1ÞZižcÏsÝÊØTô!@ê8Ë{Pgì{ÿ %…ì?óZû–¾ý˜|E¥xgâ¤šíìV6rZÍŸ1Â+ÉíÓ©¯»´}RÇZÓ`Ô4›¨®ìgÅ<M¹\AÁúƒ@þÔŸò]|Kôµÿ Òh«ÜbOùüAÿ aÿ ¢–¼gö²²’×ãf«4ŠBÞAo:U,yüã?•uŸ²‡Äßx>ÓYÑ¼Mx,êe¹‚áÔ”'nÖR@8<)ã¯¶@>Ç¯¿måqâß±Ï–l\¨“Ÿæ+è_üZðŠ<X<= jm½04áÒ6¤eCe°sÀ# ó^yûbøBmoÀÖZí”FI´YXÌsäI€Íø2¡údÐ”~ÅüSÔ•ð´‰Bg×Î„ŸÐWÚÕù«ðÃÆ7ñ¾›¯ÛGç-»šãÍ‰†sëƒ‘î}Ë¢|kø}«iÉvž%²µÊå¡¼o&D>…[©údP¢Ñ_ þÑ`×#µÑ<rA0ž}JÑuû©á°$ñ’8ëè²ÏÄxæJÓÄqÅug§Fu»$wcÂ0+p	ÈÁéœç4óí®¿üT$Îï´!ô1!¦+èØ‘ã>×cÍ–[èbL#^ûeøF}?Æ–ž'†2lµHV\xÆ0~¨îŸJå¿fÿ Š6ÿ |Gw²$:¤ª³´csBë²c¸ù˜9äq‚÷¥|Çûq<cEð¢<ÓqpWè3üÅzóübøz–?k>,ÒÌXÝ´HLŸ÷À³íŠøóö„ø—ÄÅ6œ’G£XFa´3äå¤#¶p8ôQÞ€%ý–FøçáÓp«r_éöyó"¾ü¯‘?bßÏ>»ªx²â2¶–Ñ+f#‡•°\÷Tÿ ¯®è ¯+ý§´§Õ~kÂ--¯•t²H¥à»z¥WÔl­õ->êÆö1-­ÌM±žŒŒ#ñÐåÕËÙÞÛÝEþ²	Uú©ÈþUúƒ¢ê6úÆ‘c©Y8{kÈx˜ªÊý~qüPðU÷€|c{¢_«˜Ñ‹ÛNFð“ò¸þGÐ‚+Õ>||>
+Ó£ðÿ ŠažëEŒŸ³OÍ-°'%H?y2s×#ž¼ ö¥Cys•œ÷W.#‚ÚYôUQ’!^kÇ¿†¯mçÂMŒd£ZÎ{cfkÃ¾<þÐvÞ&Ñ.<9àÈîÆäl»¾™v4©Ýz€{“‚FF(èO‡|%ãåèº‡•ÔØÝãè¹!¿à$Ö¯Ä¿XxÂšö¤­"Å„Š8i¥oº€öõ'°×Áßüuã_ˆºNŸÈ-¢•nnå\. ·#¡<(÷a_HþÛÎß´G@ßgML	1Ð1‰öçÿ  ñwÆ?xçRû<Z•Ý¬W#‡OÒËFNü¿3“îOÒ¶´/ÙÏâ&ºéq¨Ák¦¬¿3Is—Ç©TÜsìqøW-ð\Òü;ñkÃú–ºé„rH+ýØ™ãeW>€3{uí_{ê^.ðî™¥¶¥}®i±XªïóÂ•aþÎÌ} É4ùññcÁð€xÒãÃæ÷í­1;MåìO šú{ö'ÿ ’o¬ÿ ØYÿ ôLUóÅÿ 'þ"ë:õº²ZÜHaƒå¢„RGbBäS^õû!xÛÃš„u]+YÕí,o¥Ô„±E;í2DA·ÔåO€=göšÿ ’â÷ ÿ Òˆëá?ÿ Èã¡×üú1kïÚNŸàŠR0IÄüz,Ñ±ý¯¼?xšv½¦ÞÌ	ŠÚæ)˜¤+‚• ~¢WÅŸ¶·ü•'þÀÑÿ èùëë/x×Ã~+wOë6z„‰•ÒË"žaÔ}5ò×í·c$~8Ð/ÊŸ*}8À­êÑÊÌGþD ^ý‡¿ä9â¿úöƒÿ Bzúâ¾ý—þ é~ñèñ¦ßMÔ­Ä-q´°ŠEl©`9ÛËöÈíšú§^ø×ðÿ GÓ$¼oY^\¬OçJç°
+½×€>Zý®_ã5Ú©ÉK;u>Çn¨¯Jý‡?äâÿ úëkü¥¯›¾!ø¢ãÆž4Õ|Avž[ÞË¹cÎ|´ *.{á@…}#ûÈ;Åÿ õÖ×ùK@ÍñÛþH÷‹ëÂJüê· ÜDÈ,üëôWã·ü‘ïÿ ×„•ù×kÿ 0ÿ ¾? ~§×Ïß¶·ü“'þÃÿ è‰«èùûöÖÿ ’a¤ÿ Øb?ý5 |ëû8 ~6xW?óÝÏþBzý¯Ï_Ù¿þKo…¿ë¼Ÿú)ëô*€>9ý¶ÿ äxðÿ ýƒþjwìGÿ #Ÿˆ¿ì¿ú0Sm¿ù<?ÿ `ãÿ £Zûÿ Èçâ/û¯þŒôOÇoù#Þ-ÿ ¯	+óªÜ¢ÜDdŒ0,=³Í~Šüvÿ ’=âßúð’¿9¨õM]‚¤dÐŠZùóàÇ¿ßxRÃIñv£™¬YD°®2"¸UWßÐ6 È8ç‘×ŸŠ?¼)áÿ ]¯‡5H5mnXÙ-’ÔïŽ6#Ýþî\“ÓÜ |aãwŽOkï<¦Ô.
+cÓÌlWÛ?²r°ø'¤–èÓÜúy¬?˜5ðpO0 <’ÈÜË3úšý$øKáÇðŸÃè³.Û‹kPf_I\—qÿ }3PËŸ¶¿ü”­þÁ	ÿ £¥­_ØþFÿ ×¬?úVWí¯ÿ %+Gÿ °BèékWöÿ ‘‡Å?õëþ†ÔõÝ~ax»þFÍkþ¿gÿ Ñ_§µù›ñÊ]7ÇÞ#³JÉ£p„úèØ?ˆæ€>æýš¿äˆx[þ¹Kÿ £ä¯L¯›?g/Œ>Ò¾Øè^"Õ#Ó/ôã"~ý[l¨ÎÎH1×Šö? üFðçn5H¼3v÷#NdY]£(08e’>R2@é@…Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@UÕ¯OÓ.ï% GoÊÙôPOô«Uå¿´Ž¼t?…º—”Ûn.¶Á=rÃ?¦iÅ9; >*ñf¯.½â]OTËµÍÃº“ýÝÇhü±]oÃh£}'S[eYõ]#6áñ#ÁÕ¶Žü…¯<ƒê^šÖçÃvÉ¤YXOumŸµÛÎ­æ¾O„0ÈƒÖ¾ûIaðJŠNÊËC»¶ÎY¾·Ô5»x³ev,æ†o‡’X¹Rg²íÀú×‹j–—zuìÖWÈñMmxÛ<÷è­Ýtûw½·µûèZ;ƒt
+ã¾Ñóqéšð/jwž¥wytáç™ÎYFá\Ù]_g	Ëx­|Â×3bùäiN‚¥¦¢í@¾”êö°ÔÝ:k›w«õbnìt}~µ¥Y±ýñõ­*ùn'þ%?FoC©ì¿ä—k?ö·þO_T\­©¯•þÉ.Öì-oüž¾¨¸ÿ Zÿ S_7-Í™]©†žÔÃR!(P(â¤ZŒT‹@%XJ®•a)f*·TŠ­Å@É)²ýÆúS©²ýÆúPÊÿ ¿äêÿ ö2Íÿ ¡I^ z×¿üNÿ ’?«ÿ ØË7þ…%xëTþóýŒûõ­õ¨êKõ­õ¨ëôÜð!è¿#Š[²)¾R²£ƒô¯jðuÕ¦³g¢ÞÝÚ¥ÚÛ«YM®R6Áe|{Œ©¯# ƒÞºß…ž(Ö$’iå†7£.«¸) à•ïÚ¼ÜÇäÚ]Wªßï_Ö¨õÛx‡ö#ØÆ’]iÿ j-Aÿ .¼–lúa¾_¡¯&ø›e,^"–øÅÛÞ³IÆûÕð~cŸ^yÝÎÖOs£^jú…ÕìLÆHîÊ]¼áöà¹Ç_ZÊñÅ½”žÔZÈÄm­ocò3”ÕÌˆ‡¸Èçåõ}Ž!FÖ¾‚¿CÌ,næ°¼‚îÙöO‰‡b+ôkÁ:Ì~!ð¦—ªÂAK¨A_›ã­}—û%k¿ÚßN•³5…Ã è„¿Ö£‰pöp¬½èkEô=ÆŠ(¯•7
+(¢€<ïâçÂmâU’ðÖz´+¶BÔu‡ñ®{ˆÉ¯•¼Uû8x÷Fÿ ³­-õ›P~Ym&Ul{£sì3_vÑ@	ðâÉ°xKUÏ©‹ó'Þx+ödñ†¯sø‘­´;å÷H³LGû*„¯æÃ†¾Û¢€9ïx?Gð?‡¡Ñô*Ùçv9yœõw=ÉÇô±>:hŸŠ>ëÚ>…mö­JébCæ*nÛ21ù˜€8Ry5ÞQ@	ø_à7Ä›iw^ÙoÜ2Èÿ n¶;U\p$ÉàWÝ”Q@'Ç=Rñ?Â­{GÐí¾Õ¨Ý,B|ÅMÛfF?3
+O&¾NðÇÀo‰6^%Òn®¼9²Þ¸¥‘¾Ýlvª¸$àI“À¯»( uWFWPÊÃE|kñgön×´ýbæûÀÐ.¥¤LæE´*ÍoŸáˆ£±>£ŒŸ²è Îë‚ß/n–¼+¨FÄãtábAÿ b{ÿ †f{H>êš~³qnþ)¿$wh»’Í“•E=H<†=óÇAŸ¤¨ €oÿ gï‰6—x|\¨8Y º„£{Œ°#ñ¾¿øáÝ_Â´}Ä1Çý¯›¹@áCJÎ#Œá»WE y/Çï„Q|KÒ­î,'ŠÓ_±`–\ì•&7Ç gpqÏ×Éz§Á?ˆšuËC/…ïfÁÀ{b³+{‚¤þµúE |gð3àÇÄ3Çš6¿wdš5­”âIêA¾HÈ!ÑQI9*Hçšû&x£¸†Hg$ŠE(èã*ÊF õú(åŠŸ³Ë_O¨|>žo!,tË—Øc>‘¹àfÆ=MxÕ×Á¯ˆvÓ¤ðž¤Ì3‰þúRGë_¢”PÂ¾ýœ<o®ÞEý±m‡`Hß5Ë«ÉŽûcRI?ïmõöG€|¥xÃVÚ&‡Kx¾g‘ùyœõw=Éý  p+¢¢€1ü[á½/ÅºÖ®Û-ÅÂá—¡R:2žÌ ×È=ý™|U¤]K/…^-sO'(»Ö+…Œ¬BŸ¨<ú
+û^Š üé¾!¼±á-Svq“žq^ðûöbñ©wþ1–-O†9[‡ƒnU~¤’=+ìú(7Ãšá½ÓIÑm’ÖÂÕ6Eöõ$÷$ä’y$Ö•PEP!ñ/áæ…ñEôIZÞê,	`cÝO¡îð¾OñìÍãMyAû.»gŸ•¢‘a—í#3ôc_oÑ@ðâ“að–«»ÔE‘ùçÖøKönñÞµqö¥½¾‰hHÝ-ÔªïdBN}‰_­}ÕE q>h¿43c£#Iq6êòP<ÉØtÏ 8QÓÜ’N—Ä	XxßÂwú«¹`¹Q¶E4NU×ÜÌdw®ŠŠ øÅ¿³÷´é#µÒŽ¯hîîlX6áî„îðÇ¹¨ü)ðÇúõüqO£¾•jHó.o˜ Aì¹ÜÇè?_~Ñ@3|Pý›bŸÂZ,^òµ´ØŒWv#7ù;‹–è18Ï gåãÚGÀo‰ŸÚ°mð÷ÙÚ)¼Ù®á¤ç!É?€5÷ÕKYÓ-u­÷LÔcó-/!x&OU`AþuðïŽÿ gŸøT™t{ÖôÂÇÉ¸µ+¿o`ñ“~™õ÷}ò·ìàox[ÆÚ•æ½¡]Øi³éí™q„ýç˜…FÒrxÚ½¯ãGÃ‹O‰^:l²‹kûwó¬îHÈñ‚wVÀö®úŠ üø×~üDÑîÞðì÷ˆË5“,ÈãÔ`ä~ Øð7ìñãoj1.­bt=7pón.ŠïÇp±ƒ¸Ÿ®½}ßE |‡ñ·àGˆ.|C¥Aðÿ Ãâ}ËLŠÛÌûT³HBÅ·º’Çp$ã½zì©àøËÄqø«MûÝÉ@<ø¥Þ>ï¸Í¼:×¼Ñ@ŸÅ"û^ømâ-+Iƒí÷v1oTÞÇ Ëâkã?gï‰«<lÞÀ	ÿ Oµõÿ ®•÷Ý W~Ô>×¼oà=;Nð½‡Û¯"Ô’áãó£‹ˆ¥RrìV^3žkØh Ž>	üñï†¾)h¾· ý›Nµ•Úi~ÙnûA€ád$òGA_cÑE |ÕûR|3ñwŽ<U£Þx[Iûuµ½‘ŠGûL1mmìq‡u'‚:S¿e¯†ž-ð?‰µ›¿é?a·¸³X¢´Ã.æÞ0ŽÄqë_IÑ@'Çoù#Þ-ÿ ¯	+óª<jÃ °ó¯Ñ_ŽßòG¼[ÿ ^Wç]¯ü|ÃþøþtôOÅ¯Ù¯X°Õ'¾ð+¥Hw”	­ÿ ÙÏÎ¾œîíÏSæV¿¾!ÜÜcðž¤®N3"¬kÿ }1õ¯Ñ:(æÿ ³ÃxoU¶ñd‚}BÜ‰-lb;ÒìîÝ‡`8œžßHQE |ÇûQ|/ñ‡üq¦êÒ>Ýiœ°<Ÿi†,8–F#àôaÏNkCöWøoâ¿k:üþ)Ò¾ÃÕ¼I}¢)wÄ‘ò3c¯zú2Š +çÚàEÏŒµGñ'„šÕÝÝZJÛãhÀenð  àzýE ~uÏðoâ3˜_Âz‘pq”@ëÿ }Gë^ùû/ü+ñŸƒ<Ku¬ëñÁ§X\Z´hò‰%äl)!pGsžHÇ5ôÅ QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE WÌ¿¶n¨ßfðþ”­Î×=FJúhô¯Œ¿k‹ówñÖßwËkhå‰þµÝ–Sö˜ºq}ÿ -I›´Yâ¶‹ÝÂ³±XYÀv†y5ìÖñé7qKá«M8[ 1{À{’¸ë°±çÛmy/‡n­¬õ«K‹èöÑ¾^1Ücüy¯TOérLZÅ”EÛåI¬Ìddð2ˆ+ìsURVŒS·‘ÉÐOÛ£x6ôi^Igº{èš'C}Îq× Jñi>i‘}95êÿ aº}ç3<^Lëð¤ŒÑI»;wòà×“§7AŠË¿ÙáM;óKòÕþCD´QE{¤€89«KrÛ:ÕZr±+ƒ¥ŠKÚFö*2qØöÿ …$·Â­\ž§V·þO_UÜ­©¯•~~ërcåT·f>ƒ_RÞÌ#Y%
+Î çÔŠüÿ ¹q5VÕQÙjaª¶Ú¥•ÓlŠáã‘¿#Š´ÕÊ1(P(â¤ZˆUÖím§ò¯¼ËSœ‘ISøŽã@IVª[Kñ‡‚D•ñFÁ‡æ*ÚRÌUn*©[Š’Seûô§S'`±9' Oå@+|Rÿ ’9¬ãþ†Y¿ô)+ço9Ârkè‰çwÁmRUû’xŽvSê7I_8Ozú¼‡
+ô´Šv—_DaVM= œœšJ(¯«JÆKg"ÛêQÈÈC*z”•Ü<mïŠåÆi>Í“üQ>Š¶ê6ÜiÉm«^@³H·1«¤p.Ë^0àŽüV6¿¦Áâ[8¡hn­­|Ö‚Òì2ÞQŸ¼€dƒÉª¾	×Lúe´Ö¿ešúw´šÚâO/*OÊêI€«â=O²‡I½¾-5›$ò< ²ÈûNä_|ž¿­|ç³¯J«(ëúÏº‚Kk‰!™JÈŒUìkß?c½Q­üa¬iÅ¾[«u‘WÝwüÅx^³zuRêñ”)šBø³^‡û6^›‹ºKnÀ™ïœ
+õ3Ên¦	·º³*›´»h t¢¾ê
+(®CÇ?|9à©­­µ›©Zþän†ÊÖšyÔ*Ž“Ž‡Ò€:ú+…ðwÅOx¯XþÈ±šî×WØdWÖ¯Œ d‘‘ƒù×u@Q@R1
+¥˜€ É'µ -æ·ÿ ¼!ìö¶ê:»@Ûf“K±’â8Ï»¨Úk©ðgŒôÙIuáÍF;µ‰¶Ë
+Iz:0½úŽqÅ t4V·ˆ<ÿ ^èÙšŒfµKŸ·<X¶“qÆÅ~ì==¥Vð¯ŠâñµâM:+W´[ÁhîÌ”•¸Ýh¥¢Šà5ÿ ‹žÒ5i´¸ç¼Õ5&·ÒíèÄ}¨À>ÙÈ þŠäüñÃ~0š{müý¾™¬®"h'Œz”p	ŽFG5ÖPEKKÕl5d¸}6î¥·í¦10m’§ÞCèGq@h®kHñ\Z—Žuÿ -«¤ºD6ó<åYªH vÆ+¥ Š( Š( Š( Š©«êi:Mî£vX[YÀ÷í;Kç Ô^Õ­uíÃVÓË›;Øâëµ¶0ÈÈìphBŠÄÔ<M§Øx«IðýÁ—ûGSŽimÂ¦T¬@ÉíÁ¤Äüi/‡¿²õòì…çÛÌ_èÍ—Ûå‡þÿ |z@”QE W5á_ÅâkÄštV¯h·‚ÑÝ˜)*pº×K@Q@Q@Q@Q@çZ·Æ/	XêSØZM«ÜÛ³*ÎK¥ˆú3(Ûù]ƒ<oáïA3øPK‰ 8žÝÕ£šèñ°>¸Å t”QY0×Ã^Õu¹aiãÓížå¢VÚ\(Îí@ôU-P][DÓõŒÆ·–ñÜ'%C¨lgñ«´ QE QE QE QX~ñü$0jeê:wÙ/e³Û}–eÙÞ'ªð}_Ñµ[oNŠÿ H»†òÊRÁ&…ƒ#b§zGá@h¢¹ïø»LðVˆ5]d\c2@¼^c—n€(úPCEyiøááh~}BÏÄ:}¸û×ZLË{’Åt~3ñæáß‡w>0´ªéÑ¤OÙ¥•d‘PÜŽgð _´¯ø\Ñ4÷†;»ëV†&˜© œ~¾Q‡öXñºLŽu?aX‹‰¿øÕ}§Y~(Õÿ °|?ª}Šîÿ ì±>Íh›å“”w J+’ñwbðß…tín}>å–ö{h³â9"3às‚¹ä{VŽ»âìgCÓÿ ³5ÏíIž/>Ú-ñÛm\î”ÿ =¾‡Ò€7(¢Š (¢Š (¬?xƒû
+}?ì½Fÿ ûFõ,÷YÅ¼[îÏï$þêrkr€
+(¢€
+(¢€
+(®KÆž=Ó¼#wmo¨XkO:¬,^á@%zj ëh®Â?4/ø“û
+ÂÓYƒPòMÁK»„,cÄž€ž½jxÇÇº„®-­59ç—Q¹ ±³î.$¸D×“Å uTW!á?ˆš‰µ94»Y.ìõxÓÌ6³ÛNSûÁ\ÃéšÑñ‡‹´_ØEu¯^u™ü¨"Ti%™ÿ ºˆ ³ úÐõÂhü;ªëÚTÃSÒu£‹hu[-~Ð}°Á>ÙÉ®§Äzî™á½"}S\½ŠÊÂ—–CÇ° rIì&€4¨¯9¶øÇág¸o—WÒí®$7šŽ›5½¼„ôÄŒ¸õ8èÀ‚z@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@|#ûIÜyß5µÏyj?ï…5÷q¯€þ?~0ø“?óÑ?ôZ×¯‘+ãaóüŒêü'3àíJÏJ×í®õ>Ý3•Ú‚Áààžõé6þ#Òîä@š¥†ö`í\ ç?ì©¯9ðV™g«kðZê3yP°' à¹  öÍz>°†xÝ<;w½X0ó¸üké³'CÚ/i{Û¡ÍÐ‡âüSéú|±Ý%ìsNÏup«·÷Ãø6à`.H¯!ƒ“!ÿ j½oâ´whÐ¶©hl®oo&ºH	ÜBž¿y%¿Ýo÷,¿XRÿ ·‡Ð–Š(¯l¢Š(éßÙ“FÄ<Y¥Êp·¢ƒè@bæ+Ò|â'0axÅ·ˆ, †DíÀ‘B+ŽýäX×ëå?“W²x·Áz/ŠU©k™ãÿ WqÙ*}r+óLÃýê§«üÎÈ|(ÈÖt=?Wˆ­å¸/ÚXŽÉÑ×ŸÖ¹{#ÅZðö¤š²óö;ñóãÐ>	?‰­Cð /ø£_HÇEûKœ~;¨ÿ …Rÿ ô5ëßøÿ üUq”sö_m-®E§Š´ë½ë8Ý*î‰³×o§jVZŒB[¸.## ÆàþkžÔ¾ÛjVÆGÄZÅÌªM+0ýZ¸›/„Z<’ÝÅð÷Æ7ê–‡l±¬€}šÇ²ŠY!ŽxÌsÄ’Æz¬Š~F¼/øçA¿eñdúíÞŸœ}«L¸fØ=H%k°ð¾ƒ£ø–ò{]+ÆºûÜÀ¡¤¦u+Ÿ_š€±ÑÞø!Rsuá½JëH»ëµX¼'ê„í€¬»Ÿx·Â¯è_ÚV#þ_´Ü©CÐV¸øW ÿ ™³_ÿ À‡ÿ â«3Rð~¥ßÚØßø÷X·ºº;a‰îœ§Þ ›Âÿ ¼3â «c©Ä“÷‚|ÆàúsÅvÐ0eH ô æ¼^÷özÐo®šî}SPk¦çÎÜsŸ^µÏëŸþ"èaG‡|Oy¨XFx®96úgùÐÑ¤àdô®âŒ#²¶þÆÑ¼×¯¿s|ÞX=]@ Ïé^m¤Áo=íž—â?ø¯IÔîNÁkqpàHqÎÖxâ½‡Â^Ñ|/æ>™nMÌ¿ë.fo2Wú¹æ€<_ãþ€žø¦éŠþcÅs›'÷Ü«noÄ×ÉÕöímÿ $Î?úüOý«ã
+ûNþýCž¶áEWÑ˜…Eqþ¬B*ZŽãýIü+›¯‡Ÿ£*;££ð§‡Ÿ[’y%¸[[+uß4Ì	Ç   êNk~çÀP8ó­5»Xíóµ…Ê:H­èT/ëS|0–C¥jêbÜ%ÒÈg(Sõk¿Wk»‹ÿ kDéšÌHsÕºKÃÓh$òÝ;v5ãcs
+ô«¸Aè/#ÃµýçDÔ^Òì)`+¡ÊºžŒ¡®‡àäÿ gø£á†Î3{ŸÅ…Pñ¾©i¨_[E§3½­¤n’:ígÛß¾”¿É|0G_íô1]¸ç)åóuŸ)Pø‘ú0:QMî/Ò_ža^;âí7Ä~ø±?Ž4m	üG¦^ééeumnà][m9Ý?x$ç¦3^Å^mâx³Âþ!¾]KÁ·ºÏ‡ƒYÝèCÏhÊÉ ç998æ€/ø+â/†<gª[Q5¦¿jŒZÃQ¶0]D§°QÓ;Iíšå¤ñ.±ãoë¶ÚgŠí|+ h÷m§ùŠ‘=Õäé0þó„@Nž
+¶k¬|Dø¯áEá}OÃºN‚“™.µX„7fDÚ#ä£“’qÉèzåÝxGNðw‹üC'ˆþŸèº­ëêš…–œ—“Û´œ¼2'ÞÚ%HÈçò ì¼âMRÃÇ/á-w]´ñWm{§êp¢G!Á^U>]Ãp!†23ŸjÞ"·×›T¼:§Åm?Ãïæ1µ²¶··UŽ<ü†O4–rF	=*çÃ3I¸Ô¯uáâxV(âòío®m#·¹•›;‡”åQòòÇœô¯?ðM­†ôfÒ<Sð³UÖ¼X’Ëçße%ÜwÎ\‘'Ú_€¤ÔŒzP¦üñ]ÿ Šü-zÚÄ¶·:Ž—¨Ï¦Muk*äÇ‚%\q†zzVoíss/‡ôZÜIkˆõ›m*æhÎ`|— ú¸÷Š‡övÒµM#BñTZÞ‘ý‘q7ˆ®§KTˆ¤JŒ‘cÊà €ÃƒŽ+«øŸáã_
+É§ErlõeK»°2`¸ŒåéÔbh{CÒ,4-*ßMÑí"´±·P‘ÃàýO©<šòßŠÖPø[â‚<_£¢Û_ê¼:& ±|¢îÁÁqüEJä½='±ø—â=Ýl¼gàKªD65Æ‡h/-®þ%!†ÜõÚzS4'Ä<k¥xÅz[è^Ñ\Ï¦és¸k‰ç#i€ávö^ þ º^¹©Mñ»\Ñ$ºfÒíô{{˜­öŒ,#ÙÆy w¬Ï„?ò<üPÿ °Òè•«zF{ÇÍP{;•°—D¶Š;“ÄŒJ‡Æ	¶sIð·N½²ñ—Äiï,îmáºÕÖKy%‰‘fO(ÈHù†xÈ õÛßü)×/t©L7®±ÛG081y²,e³Ø€Ç×ÐøÂšgƒ|9i£èð$qB£ÌžgÇÍ#žìO?§ARx×Ã–~.ð¦§ ê;…µô&2ËÕUaîøWhž3ño‚ìãÑ¼má=oY{UA«èVÿ kK¤+:d269êhÒ'¸Ñ ñU¬3EñÅ³ù$Æ<ç…H,c;AÛÆkñœÛë—løcá0ãì–ÐC
+Êã-#ÌN~lŒ(ïT|<uß|QÓ|Q?†ï´-M°žÖ?í6T¸¸y
+ŸõC%@ÛÜ÷®^ÂÎÓÃž(ñ@ñ·ÃíSÄš•ö¥-Í¦§–º‚KnØòãÕmm8Õ|-ñ.µ¯Ÿxjó^³Ô5£Ž×]µ…eI£fÊ)ØYH9ŒŒ{žkàF‰âg:üñx´Ågoâ{µ»µþÍ‰¾ÖË"ù¼œ¦ñÆÝíZß´­NËÇ¿¯5ÿ Â;i{ýžö–±Â ‚98VP˜»öçÄS~ê:¯ƒ|KâßøW_¹þÑñ÷¶Ú­°{O"fRä$Ú2Häö òž"¼ý <o§xfê4ÜYØ=Î¥$Bcn‹Â¤g‚ì[‚Ü ­Á8­m^ûÅß5]&÷Yñx—Â÷×qÙ]}¦Ö8g³yUd 2ç¨#é×"•Äž&ðçÇkö^Ô5=
+[K8g[xˆ’L!ùàÝ…¡2ŸŸÚŸâkÝgâ½ö“¡XxgZÑü=ìWš•ö±möfu·¢BrÄœ|Ý±@^®jRürÖ49.™´¨4Xn£·Ú0²´¤Î3ÐzÑñ?]Ô´x
+ßNºh!Ôu•¶ºP ù±ìc´äqÈ1\ÿ Î·àß‹QøÊÇ@Ô5íûK]:ò-6?6âI«„þ AÇç’8Î?‰ï¼MãOøR‡ÂÚÆ™ XjÊÌ/mÈ¸bTæYsåF `<–ö §Äúß‰<Iãû¯ø;P‹F‡L·ŽãTÕžD2dÇhß.J‚KéÎ×„´/hºÑ][ÅqkÚ#Äß-Í’Ãs™ÚÉ…e#9ÈÏLW;â5ŸüKÔüY¦è·ºæ‡®[A£ž¡îmæ„I<êTàÎô^ñ¦£â]ma¶ð–µ§i	4·Ú´bÕ·ñµR#–`yÉà
+ Ãñ]¾¸úÕÙÔ¾'XxnØ¹6vvÐ@¬³HÓÌ}@À«_¼W©x†Ç]°Öïm5+íý¬ÿ ´m¬wqí’ax‚rWŸøfÎÏÃ2êÖ>4ømªø‡ÄrßO7ö¤ZRßGzŒä¡·6œŠê~i:¦™¨øâM[@ºÔ’h-#l*†1…F +c¡+ÆA ïâOü“¯ÿ Ø*ëÿ DµygÃ/‹^•ðïÃVh>*šKm>šK}&I#r¨U‡QèkÖ> A5×€üIok“O.›sqÆ¥™ØÄÀ(’IãKá5­ÅÃ
+ÚÞÁ-µÔ:m¼rÃ2xØFVSÈ#ÐÐ˜'Œm<]ñ÷À²YéÚ½ˆ¶´¿V›[–Ýû»ºôçð®îsQoŽ÷Z]1ÒSÃÉx¶ûFÆà¡|ã?tc®*§‹4Ûéþ9xþ;™,m­/Ö{„‰ŒqE
+€Â“Û=jK}:ô~Ð×š‘³¹sxf8Ñ‰¼£ ¹-³~1»ã9Å aøj|LK¯XxžOøtÜK›oii²Î‘¹C4­ =YOÊ8þf_ëž.O—¾ñ=ü76–š¸àˆF—Mç€'+Õ[k*Ü©#­GátñWÃ(®|=…î¼Cáô¸–]2êÂx–H£‘ËùR£°ä?0àƒT<úÝ×íª^x†-ndðÒ‘g‚_²!¹#g3¥‰|Ø4Ÿá;oêß>$é¾ÔâÐíª²ÝjFÝn%$ÆÇ7Ê:1,s—k¥ð–©âÏ|O‡Áþ+ÖSÄ•”—væÝ`š6ŒÑ°^ÁÎyíô­?…ºuí—Œ¾#OygsoÖ®²[É,L‹2y@nBGÌ3ÆE%Ó¯føçàËølîd±·ÓïRk•‰Œq³Ú±€O`zÐß	õíFxüK¢xšðÜjÚ¡$2\H–ÏûÈd8 ¡#§ð×)ðÇšþ³ã›…ñÙÑ<E÷Ú21ÇÌ†> $”*üç­7ãN‹â+Oµïƒì.n[ÅqÐ¯šÙ–Ù·®Ë‡# ò.ã€0+â_‡&Ñ<'áGÂº|÷w¾¸‚Kk[t-,öøK€2K!Ïü€.éÞ¯¯|Vñ-¶Ÿv#Ðô;(í<¦@c–úOœ±?x„]ª@#­rº×ü$¶–—WSü_Ò ×¡FX,©jù[X—ÇmÄç¾;V§‡|'¯'ÀíZÖ{_kÐÜêÄÆËs>[a'•!v§¶+”ÒI‡FÒ~^/ˆ–Ü@Í£Æ–é.Üå³½s“‘–oJ Ý¿ø«Ëð÷Àß#“ìúaž5×-AC‡Êi ‘±À#¡ç5Ô|\×µ+FðÕ×ÙõÝzþ;KyÑC˜b<Ò€A*Ûø«;á/†Zóà—áÏY\Z›‹)­®-î"1Èú«ƒ‚üsmµ}{Ä²ßø•C7ƒí›ÃvÎå–usæÌ®Å‰@ì£j’p1“Ô×›~ÐzíÃß²i·k>­{o¥›„81$¯†`Ý~5Õè'‡Zñˆt¨lîá“Eš(%šU9YãòyÀ#9ÇQëQ|Eð¿¼¡ÜÊÐÀhgO½ªC#¡ê2(ÿ …ü?¦x_CµÒtKXíl­Ô*¢IîÌ{±êIëVbÓ,aÔ®5,íãÔ.#Xå¹XÀ’E\íÝH5åºgÄ?øjÝ4Ïø#Ä…üËŽƒl.à»£àPŸCß°é[šf­ãhž"Ý¡7†­ç²xt§»›ý/Îe`$t\„ •ÀÎF;ç€wVƒÄŠó¾£ñJÒµ…$¥”6öÉmì¬²#RNi—>*¹ñŸìÅ®k:„qG}&—wÀ‹îz_c·?sþKÓ<1e¢Éð{PºñL0¬3½Ö“A4àa¥k·È(Ç-œž¸®øGAÖm¿eÝsHºÒ®¢ÕÞßPU³[wWfi¨D#q#r ßëš–…ðÛá¤šMÓ[=Ýþ“g9U|.€:r\væ½ÇW—w‚|C{e!ŠêÛN¸š) £¬LTóÇ
+óßxk[Õ>øat[C&¹¢?QŽÎ_‘¤xTf3žÉà÷ª*ñ¿ˆügà}gHÐ¼â]:þâÆhî&Ôí|¨â_,îXùÝ+°Ê¨ rÀÐÞ0ñ†¹§~ÍZo‰í¯¤]iì´ù¤¸TRÎÒ<Aø#†nÝêÎ³¡üQ¹Ò'×mücŸ©¬fâ==>7·@D-#e˜ã‚Þ½ ™âýU¸ý—´}*2ú]R;-1Í-Ý¦R’BXp ž8Á¯j½RÖW
+ –1° wâ€<wÂz‡þ+x^Ë^°××Â:t±Š+k4¸’âUùd³Ÿ•7†
+£’Iæºƒ¾#×u&ñâé`¹Ö¼?x-¤¼…-Ìn»‘ÊŽ#==ª_Ùÿ O¼ÒþønËS´¸³¼Š)\FÑÈ„ÊäeX8 þ5Ã­:öÓâgÄ»««;˜-®îíÞi"eI‚Á‚QˆÃ x8 7áÇÄˆÞ Óõß¾n¦XÅÄ‘IqzÂFË±aµx@dí$ž•×x_ñ—ã»¿xÎîNçìÚv©"smŒ² à:ŸN¢¼ûöñv­áo„ú:j>Öum"c<–WZ=¿ÚZ?ß8håŒÀîC‚1]¿ìµ¿|J¸ñÆ¹¤\èš}µÓ´»°áÃ>çšEpñ€¿á’gáÞ§¯ø§Ã¾1ŒëMmoâË+K³n’ùFëµvã#žy®_ögÒ<B~ø~üxœKu/ìóûùAýîwrß7é]Á-:÷N±ñrêw6­?‰¯çˆO!’6eÚë‘ÊžÄpkžø¨ê¾Ó,¼	ªøW_ŽêÎêå[RÃìF6’IÄ¤óÀ`hÙëÊiTð^ŽîÁUuÛI8 yk·ðO‰áñf‘.¡mgwiwSZ…¹PÜ¡a‚Aò>•È~Ðš5Î»à½:Ê×O¸Ôjö40ÄÒ(?ÎHîÔÐaªx³Ã6VÏ¨ëšLvª‡Ì2\ÆAäc<ý;×ÎúŒMì›âûˆ`’ßJ»ÕZëL…Ô®ËF½ˆÆ =Þ#ëžõíöŸ	¼ip“Cá-#ÌC•/nôlŠÍý¢4»ÍOàÎ½§èö7wOöaµ¬&G`·µTp<v}áÿ ‰úÆžÚÅ·ŒáÑõO:=>7‚.ë’6Y› -Œg8¦¯µ=kör¼ñ…±Êéó11¨"9£fB@lñ•$žµë•à¾Ðµx¿emWI—J¿MUà¾dÖî&bÓÈTÆãAsš ÖøÍq-ßÂ/ÜÜ9yæ¿Òä‘ˆÆæ.¤ŸÌ×Kñ\Ô´Ïü?±°ºhm5+éâ»Œ("UXK r29çŒVÄý'Q½øKá‹;=>îâî­1¤‚(YÝ2î, dŽsÒµ~$é×·Ÿ>ÜZYÜÏoi¨\=Ä±DÌ°©„€\…ñ“@þ1×¼^ÿ íü+á‹Ømín¼>.]çˆH–ö†>Þ®ÛT Rvå=CâÉ|mðÎÉ<Kqây<O¡[ÈƒS²º³Š)&`¦Hš09”ñT¼e{¬i¿´½þ…§LÛøP5ÕœlY 7lGž7‚U€8ÈR:‘Røë[×>'éáøWÄUµû¢jž±iöT·„0f	;Üã¿ˆ Õø¯âéÞ9ø}§øBhŸûgíÈñLŠLEIãvÔÜ_
+A8ÅCâ}+â'…4‹ŸXxÏûzK7ZeÞŸQOŒ¸Œ Ü„ qÉÍPøÄš•Äï…ÃVñÏ}j5#¼°L‰{£ÝØ²PO ‘š¹âÏëþ%Ðï<?áøšßXÔ"kV¸Õ-½µ¨qµœË’ ’1œþ„ÿ Œ<ksq¤ü4Õ¼?röÖšö³gËµIx%Ù£9œzU‰¾"ñU—Å
+h>ž%:¥¥Îô¸@bF\~ù»‹¸…dàw¨|]á+­#@øS£i–÷7ÑèÚåˆžXbfÚ‰†•°>UÉêx­é×³|tðuüVw/cz’Ü¬Lc›nÐÍŒ{Ö€9Íãß†¯§x†ÿ ÅãÄš+ÞEm¨ÙÏa¹D‘‚ïŒ§LÓéœ×GñÅšŸü&Zƒ|9©Ùh×SZûÝRíUþÍíŠ#F!ZF`zô8ô—öƒÓ¯µ_†—6º]ÍíÉ¼´a¼M#'BNÕà I¬_‹ÏŽôß·…áñ^œ¶GOÔ4Ó
+K2(ré4*Ü3H#®â #¸×uŸjšMÕ×müS¡^^GewñÂ—ÆCµfF”1R:=›¯øSÕ¾)ë~¹ñ¢ø>ÞÆ8Â%‚/3PÞ›šMò‚òí_OcG‡4ÿ ký„Z?Â,àWßq©éQØ­¸ P0,í¸€:çŠÒñÞ±§__^i>4øm¬ê¶±¹—V–ý%CüA—æ‰½Ž>´è³Õl4h­õíU5{åfÍâÛ¬bäíÊ)ÆqŒâ¢ñ¦£ªi>¿¼Ð4·ÕµXÐ{E`»Ü$‘ÀÎO°5Ê|ÑõmÁwÚµ½Õ»ßÏ.›ew'™5¥™#Ë‰ÎO#æ8Ï­_xÃRðÎ­	ë:¶$!æ–‹<‘É“•hrÁÜ=zP)ð‡VÓ¬uI´­rßW³ñÆªÝÜÚ½°‰ïŠŽD,¬ÊcAÀ@xºÔ¿ã]OÇuû ýu–Ò£väÇ¡U}''HÍV‚][â/Ä_jÉáíSCÐ|<Ó\õX|‰î¥‘6HòHQÔ“Ö¥’-cáÇ5ýRÓCÔ5¿ëò%Ü‹¦F%¸³ºµÿ u]®GL~`~ÐQ­‡…¼Gn¡5=+[µò¥_¼c‘¶IºÀŒj,#]cö‘Õ¤½Q Ð´hRÍ‘ÌÅžAþÑn}*®ªÚ¿Å=@¶_êº/…´»ÔÔ®çÕ¡ò%º’<˜âH‰Ý·'$œ,èøÓLÖ|5ñßÇ:—>±i=—öv«alGŸ±[rM$aÐ®z~$ ^øÿ ¦Á¨ü%ñÊ1=ŒúÚQÃE,_2²žÇ‚>„×+­]7‹<}ðŠÓTPö’ØË­M–IÖ(Hÿ d±#ëSxÓYÖþ&hÏá_xg_ÒmuXõOX´û*[Á¸¬rî@Æ Ç={ÏˆþÔmçð§ˆ¼h—:†‘,„ûM« I#V<n 3ï@Ïˆô‹MA¿ÒuÖ[[ÈZ†FÆ~£¨=ˆ®+övÕ.5ƒº¼v’e…íË1É+¯óßåAYÚ×Ä-w[Ò.4Ï
+ø#ÅkwQ˜R]NÏì¶ÖÅ†´„á¶ç8\çÛ|=ðÔ^ðV C'š,`´€`;’YÛ²Åã@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@|ûEÀaøÅ¯ú;FÃþý­}èzøŸö¬²û/Å”Œ}ªÙdøãúW«’K—ŸäEO…žO¢éÓjÚ½•®ß6fÀÜp$þ@×ªxgÂÑCgwqáÛhu;›5&{ûž#ˆƒÈyÜ}ò:W“i÷“Ø^Eui!Žx›r0êzWöÜZtzˆô	#†ç ]Ù“6îAlƒœŽkë38×šQ¤ô}:³—ÐÎø™¬K%¶›§3Ë8hVñî&mÌìã<zjó˜?Œz5{_Œt»GðD‹À¿¹‚g=³[Û•?ÅŸ™GËØWŠGÄòÆ²ÀÎ.4¬­fÓõµÇ­µ%¢Š+Û$(¢Š ú×ö5ÿ ‘c]ÿ ¯”þM_DWÎÿ ±¯ü‹ïý|§òjú"¿4Ì?Þªz¿Ìì‡Â‚™<ÑÁyQ$±À§×ŠüSˆx‹â¿†</«É"h3C%Ã¢¶Ñ4€)õè8÷®2bŽêÚæÝ¤ŽhÞ,°lŒW#àïx{Áúž§¬i[’]@î‘Ýò ã\çˆü¡øCÁ^-‰mÚ{7Û‰r‹òž@Çåú÷Š<K7À¨,gðÅÅ½‡— þÑûNx®Ý½úu ©ÙÑc.Ìc;³Æ+>+m*Êiµ(â¶†K€<Ë€ /é“Þ¼WãO‹bÓ>økÃÿ n“kð$Ó“ÌP„›ó ~5Á›½Æ¾ÔüªÊº¥¾“9û3³s,<ìoÀcó t‡S²šAWP»ž‡šä<aàx‹Å^§¬8›‰ Ýƒï^eð_Ázê^'ÔVÃ}Þ•©J¶lXIÀ•;áO‚ô?øNóÄ>+2Ýj÷2,·nÖƒÀ_Lf€>€–h-`,‰J:±À§A<W1‰!‘$CÐ©È¯ñVm¯|_Ð|!ªÍ4ÞƒM7ÂÒ¯oê{ãh«ž²‡ÂŸ5Oè2Iý-šÜIl[rÛÉ’8ôÈó _¼Ò¬/n­îní!šâÜî†GPZ3ÓƒÛ©«´Q@#û[É3þ¿ÿ AjøÂ¾Ïý­¿ä™Çÿ _‰ÿ  µ|a_iÃ_ÀŸ¯èsÖÜ(¢Šú3¨î?Õ~"¤¨§äÆ¾­\¸×û‰.ú}úÎƒÂš†³e¨ü?,ëu:ù{aÎXz~•»©xoÆRÙ8ºŽîxóæIòÄäŠÐøcqéW÷¼©$-¤˜Œ‚Nl}ë ´¶ºåÝ½Ç†Î—kæŽú5*Ñ xbç†–kÏÄâå
+ÒTâ½Ýï»xÃ¬CêuŸ	aóþ&ø]üÿ Ä&Ÿ mrÞá£XçºµŠâp£¼läâ¶¿gËO¶üZÐùNfÿ ¾pkLÆºž_:×æ8|HûÙF ´”WçÇXQEcx‡ÄvÚ\†W¹Ôî–ÎÖWs»I8ì Iè lÑY>$ñ.‹á‹5»ñ©i§[±Ú­q(MçÑGR}…Uð·<7â¿4xsZ±Ô!—ŽAu¥zïŠ è(¤vTFw`ª£$“€QÐõ{{KƒRÒ.RêÆ|˜¦@v¸‚F{d ¿EQ×5}?AÒçÔµ‹¸­,`Ç™4‡
+¹ Ì?ºŒ—8a‘‘Ò€ŠÆðÏˆì<GëØVK+©,îa™vÉ¨y}0Aî5³@ÅIñWÀ‘êÇMiBì>Â¾xÚ¦ýÜþ5Ú+PÊAR2èhh®.óâŸlõ&°¹ñV’—JÛMÀ*§Ð°ùGâk£ÕµÍ3HÑ%Ö5Ø`ÒãE‘®Ke± Ž ä~t£Ey÷ü.‡ô6iß›…wñH’Ä’FÁ‘Àe#¸=(ÔVG‰¼M¢ø^Ä^x‡SµÓ­ØíVž@»Ï¢Ž¤û
+¯áOøwÅ±ÊþÖ,õ+ýbÃ&]=	SÈQ@ôVŠ¼aáï	C¾$Õìôå—>X™ðÏŽ»TrSxcÄú'ŠlšïÃº¥¦£®ÐH¡ôaÕOÖ€6(¬_ø§Bð­ª\ø‹U³Ó¢áò.{…Oà*xÏÃ~+Â9­XêÜñÃ(.£Ô¯P=ñ@Éø—â7ƒü3¨wÄ6w¸Âòe×=7¿Ž+¢Òõ-ZÂí2îË9†èçÃ£b8 TQE QE QE yþ©à®«{wá¯êz\7’´ÒZÜÚÅ}lO>VüìäŠÓðí|&Ú…ä—·z®·©:½î¥xA’m£
+ eá]m QE QE QEÊxëÃºöº-‡¼[uáÖˆ:ËäÚÇ8™[Ct#xÉ«Þð½ƒü7k£i­,‘C¹ÞiŽé&‘‰g‘Ïv$“[´PP[Áneû<1Åæ¹’MŠ{¬qÔð9©h¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€9†^_x#Mðê^Õ²ó19Ë/¾F»“ŒoÇ^ÕÓÑE QE Eko¥ºAkp@ƒ	jTz 8-PEPEPEP1ÿ šÿ ÂÎÿ „Ãí‡ö?öOÙ|¾1çy¾füþÇ¾k§¢Š æ<Aá5ÕüoáOÃh?kÄ=Âo>0Ÿ{?.Üg¡ÏµtôQ@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@|«ûféÛu?j{p6·'ß,ÕõUx·í]¢6©ðÍïwI§Ì³uÁ!Oó®œ_c^;4)+«[:Çq8Ê«G¶kØ|G:®ŒöÍ|–Þ{‹yä‰•#*cÏ@AaùWŒûúÖæâWH€ÁisþœùR"ºƒíq_ŒÃN·,é;J=Î4ÏH°0ÙhÑî¸7vzu¬é5ÙB¨ûÊí‰s÷¾éõé^1.ÐaÑ†+gYñ§¬*­õÓ<j~XÕB(ü ‹q÷7ªs\ñÂÊ…)T›¼®¥§–ÿ …Æ·±%€ä;Ò×¬šjè QO„fEúÔÎ\‘rì4{çìññIð.ƒ©A«ÁxÍs2²40³Žê@÷¯Yÿ †„ð§üðÔÿ ðÿ Â¼‹áäÖ¾ºûˆLÚ‚©-¹ÆÔõ%¯Dk#‹iHêÞ<üv¿Ìóª4jÊu´æwûÏ¡¡”Ô«AVRV~½>DŸðÐžÿ žŸþ?øW3ã‰ÿ |ciZ­ž®$·Ã<0:Éõoµzß†.ô­Tµ¼úm”wˆ2TB¸aê8®OÄþ(Ô´ræÊÓáçÛ­ão’â4kZè£ZàªSwLà«FteÉ5fyÞ…ã_‡F—ªY$ZýÁÔ£1\Oq´Œ¤cwò­Kÿ ‰ß¯¼¾š×XþÌUD @û°¬s·Ô
+Üÿ „ëXÿ ¢_/ýñðkôKåÿ ¾#­LŒ(>%ü:]‡U’ÃTžâE³e¶fTE ½~QRGñGáä>*]~ÚÃS‚ø@mÏ•lÊŒ§FÞ¼
+Ùÿ „ëXÿ ¢_/ýñ/ü'Z¿ýùï˜è3Ã_üáçÔ[OµÕ¿¸k‰·[¹ù‰ÉÇËÓšäµ]á}þ«qx±x†Ñn|ÖöÈé‡¾FßäkÐ?á;Õÿ è˜Kÿ |ÇGü'zÇý	ï˜è—ñO¾xŽÆÆÞæÏX‚K!‹{‹x]dŒz´Ôþø‘ðóÁÂáôÛ]f[«ƒûÛ›ˆäbv×Cÿ 	Ö±ÿ DÂ_ûæ:»£ø»U¿Õ-­eønÖñÊáZWXðƒ¹4 ßøh?
+ÏOÿ Ÿü(ÿ †ƒð§üðÕ?ðÿ Â»_ÞéZIKxtÛ)o$ä®zž+‰Ôžõ£im¢Ï@¶éùŠòñy¾	QR›ÕžŽ-«^*WI>ç|xø£øßÀßaÒ-¯Ä‘Ü$ŒòÀÊ€a»‘×šù°ðkè¯‰W÷75H¯ž6d¼ˆ&Ø•Ý@+ç«‘‰›µ÷\+ŒUc*ihõýÇ	,-WNNívóÔŠŠ(¯±<à¨Íp£û£5-Gn³0,p+—ïNû»ü–¿Š]ÏOøy§5žŒÚ«Ý;[Ü±†[t¶i¨?òÓoN@#¥t¥læŒd{÷¥¼×ª‹Ÿ÷	Ü~™®+áý¾«¥ø’ÇíQÞZZLýb²‡ÈÇ¥wöÍlÖv–³Z´RZ”’áÞƒbçÌÀ¹ˆ#×ƒ˜Þ5îí+íþZ	ž/â;Ëëífê}Wp¼g>b‘§Ó«×ÿ d];í_îïvålíH'Ð¾Gô¯Öo[RÕn®äûóÈ\þ5õGìu¡›jšÓ®ò%Iî©ÏþÍ[çõ=ž4ö»_¥%y\ú"Š(¯‰:B¼Æçþ&¿´Uœ3|ÐhšÜÂ§øgžm…‡ü1ø×§W˜Éÿ ßÚ2'›å‹XðéŠ?Å,îeð€3ücoâÏ‹Þ6×u˜c»mâ='MŽe¶Ê©ºFPxÌzõê(øócm ZhÞ8Ó ŽÛXÒ5póD¡Z{yG$O¼¤0ëÓœu¨[Q_…¿|K{¯CržñÅy£-,v·*»dIv‚WwcõÅ_x†ÏâäúG†<çßé_n†ïVÔÄ.–ðÃnòÃ0ˆ=>¸ é~/ßÜê¦øE™£Ô¼@Hº™:ÚØ/úé=‹g©c]†õ­.ßÄW~Òìå·þÄ²·qÀò¼¶"¯9ÈÎEs¾"ø[>©ãkÿ iþ/Öô‹ËÈc·d´òð‘  (,	 XRk‡ðoƒµKŽúì2xË[™ì-lnf•ön¼MÌ|©8û¼Ç<š ì5Ïø¯þ)[hióøwÂî—ºþ‹Ò3>á\\]§‚üSiâÍ>òîÆáK[Ù¬XLKÄÛI'ƒÚ¸;àåö”×ŸÙ_<Id—w2]Ì±y_<®rÌI\“Ó“éY³g‡¯m-õF_êW6ñê—Ö¦Ê]¾S¸fcçöæ€:Mþ%_´‰l"â_F¶ÕYGO29~¤mÏÐV¯Æ÷Ôá'Š›Hóà±|þðN7ãìn¬­þ&_´?ˆ/"æ-'A¶Ó¤=„’ÊÓcë´Ò½Q¹K->êêXå–8"i"ŒÈì $…QËŽ ë@&ƒiðú?…öÆ(ôSáo±¯˜òØWo%Ï÷úç?6}ëÇ´ojR~Î—úUÅÔwþËi¥È–(Ð€sÎB9OoÂº×¾	C|u'Ãö÷þ#Ý¾6._=¦ì¢"»Tç¾0:Öœ¿õËŸ‚WöÒ,iâûÍA¼DÑnVìÊ$òóÓ;@LçïŠ õM'Â•áøôK=&Èi‰ˆÀÐ«Á/‘óÜžµÁü…týCÇ>qçéz&¦¿cŽ_œGËæ,\õ
+s­Xµøßá°A¬K{¦ëJ¸›HšÊo´¤Ð(_›ž„qëŠ£àI¯¼/ x§Ç^#Ñµ5º×u»:u´[‹{a„zê¹fôüP=¨ëÞ×þ"‹_G‡áý*èGgmw`ð&¥r<Ù%(F§î¡o˜òxÀ¯ dt¯ñÿ Åox«Áº·‡ü:ÓøƒYÔížÖßN‚Î]âF+>å’	'‘Šõ/é×Z?ƒt-7P“Í¼³±‚ÞgÎw:FªÇ=ù€<ãPL¸ý£¶x©`pš,gEK¼Ë™Í(Nžø¬¿Œžáß‰^¿Ð–Ý<Aý£­ðµ g)Âm¾ämÝÜt®ÃâÎ­à(žñÉdµ‘L°Ü\YI$1œà*©ØÇÓ#Ž½«„Ñôÿ x¿ÄÒ¾hÉmá=/PWÔµ8íZî%ˆ*g¤;›'°½á¨´»Þ6ÿ „‘mäÖ#ŠÐi)tÅ¯—óAÿ o;±ÎÍñ6©¤h´'„á-ÍúÍc­­¨2î€I·0sÏ8˜®‹â¶¯ðÔê°é¿,£ßBH.®¬e1à“•I•zñ’3Üw®Áº~â¯h>	Ñ†ày×+r-Œ	w"l ÌrKžüzPnâm.óâ‹5½KG¿ñ&¿£.™¦ØYÛ	ÚÒÒ)“æ!cå¾bA$w¯Gð'Š¼?¯xŠþÚ-ãBñD†¸µ¿³X.^x`Ëéžàõ®+CÔtß„>;ñŠø¦)¬´~ûûJÏVXHX¶KBåAÚÊÄà Ö‡‡5h~ üc°ñ'‡ ¸ohúlÖÏ©ID—rÊÃÇ¸Ê œuúŒ€Gû;Á¢ÍàËÙµ$³“Å-{sý¸n™Öo5¸|ònÜvëß5[á­§Cñ‹Ç†JÂ7,QjËú…˜Æ,q´¾AÇCŽ)¾2Öþ^øŠñüc§[Å­ÛÊÑH.ôÙÒYŠœW÷€ãƒÏ­ß„zT·Þ#Öüc&”ú>Ÿw:~c$B'ŽÎ,åÝÞÇ!{î z¥Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@cøÃJMoÃ:ž"îî€µƒ×±Aé@™Z…¤š}ýÕ”À‰m¥x[>ªÄJ¯^¿ûOxWþïˆ²^CÛ=MÉÀp oÌä×Wèù^'ëXOªÑüŽI«H(ÆA¥*©fA$öéžF°Ò$mzÞ(¥q»‰¿y¤g×Óµtâ+{sZþH”®yl£=WùT´º—”·’Kl‡q îçŠ@r2:VxWÊ¼.ŸåòîøÖ/Ö™O‡ýbýk\Gð§èÿ !-ÏkøAcvÞÔµ÷=œW(²¨ØpØo§ø×³éz’­¯
+H#¨`þÈ‘¤Þñr¢º5Â¬2ÃW©\øÁ.™ôÛ©¬Kœ˜ÔïOÁIÀü+ñ\Ó'§˜¥ÌìÑô8\ÉÐ§ì§®‡¤jŽž7Ò„A¾`…=	µñ£LÓ’kMWTñ>¯¢ÄÃÉfŒêÄw ŽµÒ/‚&I¦±*¸9-øÕ]gBH"	ªøŽWSÈŽ[u“'éÍv`p‹	KÙ'tFa†.Qq¬¬x®ÿ ÑJñ7þÉÿ ÄQ¿ÂßôR¼Mÿ €òñéÿ Ù_üÿ ¿þcÿ 
+?²4Ïùÿ üÇþÚyÇ˜ïð·ý¯à<ŸüEü-ÿ E+Äßø'ÿ ^ý‘¦Ïûÿ à¶?ð£û#Lÿ Ÿ÷ÿ Álá@eæx[þŠW‰¿ðOþ"þÿ ¢•âü“ÿ ˆ¯MþÈÓ?çýÿ ð[øQý‘¦Ïûÿ à¶?ð 2ßáoú)>&ÿ Ày?øŠïþiš]Þ·&¡¥x¿[ÖÔhnãdL‘Žàg­^þÉÓ?çýÿ ð[øV¦¤[ÈÆ;Ä2Û¹äÆ–«? Í qºŽ«,þ3ÔÚád8“jü§ 
+Ô¾ÔCÚãiàw\W\Þ•œ»k—<–6Ñäþ4äð´²«jW×7h¼ˆÇî”ýBžkç1|=Uom)j}³švŠTöIoÛä|çñVÂê_I¨‚RÅo?ë«áº{ø×ƒÜÿ ­o­}‘ûS[ÃiðÆÚh’(’ò0¨Š kv¯î×7Ö¿Aájj•gì£ú£ÀÇW–"n¬÷dTQE}ÉÀG;a0:·ºO é«âK8œf8³3]Š[ï’+šOÞJ_øW^Ÿð†Sguq%´*š«€-'¸ˆ´]²§ƒ‚Fy¯.­FéÔÄGµ—§¿ðH¿#±šÖô%´öÚ„Ë¨ÞÜÜÎªðª¸. 	WŽ+'âŸ'‡õ1¨ÎkIbeµ‘ü»êÇOû¾•¥°Ò#eþÎº7,Y×Í„¸b#òË“ž˜ÃüRÕ÷Þ¶—¼ÖëÏ4ÂB÷c‘ŒòŽqìkÇÀRs¯G¢·CÁ'	cÀ¹¯Ð¿„^ÿ „gáî¦²í–8CIîÇ©þUñŸÀ¯üIÒí^=Ö¶íö™ò8Ú¤qøæ¾üEG 
+äâO´Ä*Kh¯Å›ÒVWŠ(¯Ÿ5
+Âñ/†-5ûÍòig¶½Òn…Õ´ðpUÐä£©ÃþÕ»E QE QE QE axSÃžMI­åžæëQ»’öêæà‚òHÝ¸ P€ VíPœ÷¢Š( ¢Š(  H'­Q@äsEP @#dQE ÁäQE `qÇJ(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€<Ÿöð_ü%žžkdÝ¨iÇíàrØàÈ“øWÃ]Fqjý:š5–'Àd`TƒÜøCãïÛÁ~9¸!mùk‹vÇ “–_ÀšúÆû®Œ¶—çÿ Ê¬n®`ü4‰$×äo*9®c·y-£d4 Œqß½zF¢ ]ÖãWÔ.¯ôëà©p’üì+ž
+úqÔW‰é·³i×ð]Ú¹I¡`èÃ±¯SðÖ¿¥_j:ŒZP¶x#k«™KïÙŽHˆ`m'Ö½Œ×QÍVŽÉ}Ç9â¿i6¾{«[;›I¼À-ü÷%îS<±^Bà{×›Ç˜ÜÆßð÷™õYçÕ!µ¾Õ!´ÔoY-¿š£<(•·¿JóÏˆš5¬qÚêVQ-¸¸,“B¿v9Tœíö#ñ¬ð¸ŠÅ;óî›êº¯òó+Èã©ðÿ ¬_­AîÊ·:Ôñ:ýkÙEV„¥Ïò¬Ï¥?d¿Ágªjšò*=ØY¢ÉûÅx#õ¯z¿ðö¡qãmR+öK4t[åzø3L¿¹Òõ/l&hn mñÈ§ú+Â´‚Ge>'Ó¤k…3ÛòßooÎ¿-5Q%.šž:²¤ÛUo¼ú/S»[>âê@JÂ…ÈúVW‡ôäAý¡}¶MFa¹¹Ø;*ú
+ò[ÿ ÚÂ7ÖsZÜYj-ªQ‡—ÔÆ±Æ¯/Ê\ qÕÑN”êi·èdÝ·>‘ÞŸÞÓûÃó¯›¿ávxûºçýõGü.Ïÿ w\ÿ ¾«O©â?çÛû˜¹—sééýáùÑ½?¼?:ù»þgÿ »®ßTÂìð?÷uÏûê©â?çÛû˜s.çÒ;ÓûÃó£zx~uówü.Ïÿ w\ÿ ¾¨ÿ …ÙàîëŸ÷ÕSÄÏ·÷0æ]Ï¤w§÷‡çYúÎ›k©Á‰6‰×˜¥æFìA¯Ÿ¿ávxûºçýõGü.Ïÿ w\ÿ ¾¨úž#þ}¿¹‡2î{ÿ †ï^óNy|Lcrü@ÍcøƒM×®<Keq§^ôôÿ X›ˆüÇzòÍ#ãßƒt»vŠÒÏRÚÍ¸–L’~µKÄÿ ´•§Øž?i“=Ë,—(SëŽs\•ió®W¡µ*®“æI?]wÚÛÄP?MÐ"‘Zw“í(þ~»«åKŸõ­õ®ƒÄÍö¿«O©j³´÷s³Ÿä=«Ÿ¹9•¾µô¼5þñ/OÕµ¾*ŠV$ˆ×©ëì)Ò>ÁêÇ ¢È<òíÖ¾ª´Y{|ßeÛÕþZ˜-5/h¶qÞjvv Š9eXËŸáš÷mJ].4Ž+½VÎÖö)¢‰ŒimÂÈØnUŽü
+¸¿
+øBÎ*ÇXº†þþfa¼9De'j¹Ï€zt5Ð]ÜéÛCs4·r_ß“§i<XR„ü›yþ“þù¯2ÄRHÓÃÒÜ¶ÓËi Çg¨Ä¶Ú]¿Ï<Þnèç•òÇ÷˜í$ñÞ¼c_ÔäÖ5{«é¾V™Ëíg€=…Oâ­.MY¸°gßm˜Îz¡åO×­…ŸÆÞ5²Ò£Vû0>mËáŒŸæ+²œ)eÔ%ˆr½ÖŸ¢Wv>•ý“üýá5ë¸¶Ýê„2nˆ‡ÝÇ×?¥{ÅWÓí!°²†ÖÖ5ŽT""Œ «ðµ*J¤Üå»:Ò¶ET+Î¼[â½zóÆ‹àïGbºŒVÂïPÔ/Už+8Øá"ZFê8Çéèµå_Èƒã·Ån8¸4ÙáÏWˆ@T‘ì­ G©ø‹Æ_n¬.üe{¦kžº¸K[‹ÛkSk5“9Â».æV8¸ÍixãÄÞ"¸ñ¥§ƒ|¶0êMgý¡{¨^©xí`ß±B ûÎXüÅÚZH—à¯ˆbnyÄÄKÈfM ç¿áNñ7†|O§ø³Nñ„VÊ÷Q]9tÝGO¼”Ä·1†Þ¬’ v¸bzŒb€+Åâ/x+Äz-‡Ž®ôÝ[FÖnŒ•¤ÞH.X‰"d‚­‚ZgŠµ_j_çðÏ…5?Kµ·Òb¿f¹²óË3JÈ@äc ®Cã^.× ð³ø’ÞÇG®ÚGa¥Ú\›™eœ¿2É&ÕUà(þ"IàW£ø·á”>"ñsø‚?x‡F»{4²a¥\,‘Y›–*OVý(ïƒ4¿Ùj’ÉâÏiº‰„ªCkaä2É¹pÅ²r0cÜzW>þ"ñwµÝV×À×:n“¡iwg.©wnn$¹¸_¾±&@Ø¤à±<žê—…nuÿ |W´ðn§¯]ø‡GÕ,d¼´šûæÙã<«8ûÊGsßÆyO¿ñOå[×uk;û«e³Ó.M±’_4»É3¯ÌÍ—Ú8Aäš öo[ø¶Ô^Câûí&ý¯Ùn, x]Ç;¼Å$Û}ë¥¯-ðÚŸ‡>&jþ»Õïu5tØõ[)ï¤ó'€mÉÕ†FFz
+õ* á¾)]x²Ð-|ËÅåø‚êåíÂ[Å±Žö†@÷®âïÄÿ øfmZçÅú5Óù‰½¬ZNâW`ª‹óu9ÏÐ÷Zò{ÿ ø®~7ZØŸDðj¹û¬š„ƒ÷kï±2ÞÇŠ Íø›ªüEðŽo¯{Kû28.,Åˆf2¾Ä”‡ÏBåˆã§ß|Kñü!ÚWö†ÿ U½¹ŽÇO³·Ï¸áA=€Á$ûW1ûKÉ+¸ÿ ¯ë?ý”ßŒ¤AãO…÷WY¦¸bv=çñ€$žÏâÕ¥“jK¬xjúíÌm!l^8Û¹D›~ìöŒg­v ñM¯Œü'a®XÆð¥Ê‘$÷¡‘IWCîïÁï]yWìâ|ÏkWQsgu¯_MjGC“ l† ·Æö,¾6ð‡ëvPMÿ hûUŸŸægnÜr1Œ7×#Ò¸_‡Z·5o][]ëÚf«á­3tW·VöJËq‚<˜Û'qRAb8ÇS^¡âM2MgA¾Óa¾¹ÓÞê#Ú­ˆFR¤ô8ï^[iµð—RðŽŽ5XµjW‹¤Ç–‘Á=¤Ž£«F pH;·÷É&€7<Oâ¯j~7›Áþ[nì KOS½F’;Pÿ êãTn‘‡ÍÉÆ*ßˆüaà-SK>5»Ó5Ÿê)fÚ…­±¶–ÎWá¦æS<dr? Wá|]ø©mqÅÛ]YN3Õ¢0¤zÓÚÚt‡ø;ªZÇÍåÝÍ¤ª:´¦â2 ÷Àj ×ñÇˆuãâí'Â^6V·÷–ÒßO{‘-áFUù#orÌ: ý3Æ±âïø§@±ñ>¥§ëÚNµrl’æ3i=¼û—*•í žþt|çŒ>$Yxw@¹M#SÑ­üÚàÓB²¶ß&$–ß•Æ8Î+/[Ò5Ÿø«@ñ7ŠuÖñe‡ÚãÓÓíQ$ÓÞc³Î‰PùmÔÊîÇCÖ€4ü_«xßÃ>:ðï­é×³­-’Z-ˆY"‰²À3É c8¯]¯,ø×ÿ #Ã?ûaÿ Ð½N€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+à~3øø:æËhñ6ÖL}×¾„f»ê)¦Óºó*þÎãO½žÎú&†ê1ËaÔVÏƒ5km6þhµ çO¼‰­çÙ÷•[ÃÜWÑµÂÖ¼‰ü[¡C›ˆ—ý6È¿ßÔZù[é_{—ca˜áÝ:ŸÑÿ ™Ë8ò³Û!e¸¼ŽæÎ}êb%Ô¼àÒð9ßøúTšî‰¤ß¼:LRÔ…ŠþðY§Ý‘‰%˜àäóÓé^kðòî_ØµÓª!mªìxF<?C]Þ¥i¾ÚÂÖMYt¤´‘žö&ùe•÷–½Û*TdW"ƒÃVŠS¶›¿Ð“€ñ‡…Æ—W¶3™ì¤rŠì»^7QÇcÅsQÉ¸àðã¨¯wŸJ‡[Òu3¨4–íu"\Aj«™Ú5UMûzäíÏN†¼ËÅ^6Ÿo°™î-ùnZ2’@ÞŽ§‘õÅtá1nViûïu²—üÌ~§:³¸Í/ÚÖª	
+²ð½ØÔµßO„­v©«õVW^¡Í%Ô”ÎäcuEš–Ú	.fX¡]ÎÇ VŸü#ºŽìyK]ãôÏ­m‡Âè­ú!k!šŒW“¹¸-åF2@8&·a°Ðæ¶i¢®QÁ<(9üê®¤êº\¾cÛ)×;Y‡Ì3Ûñ­Iïîmì·>šmä²F9•æbêÔ©S÷SºÒÖ’^«Õô.)%©R[Ïs«›w[b29Ç¦MQ¶Ò-ãÕç†ã-
+®äù±ÆxÍiÃ©ê7Úr‹8ÑcrQ‰Á?â{RŸíåŽGÓ—ÌU”7Í“ŽHíY*˜¸óFs[Yj®ŸO˜íÄÿ ðŽé‚3)W”DnsžÝE$¾Óc™Ua™‹ rp3Ÿj’ÒãUKEŠk!+‡gWÏ×§5Õnå½x~Âªñ •ñ‘Î9<jç‹Å¶ÿ yt»Im÷÷ÿ ‡»Øäu«d³Ô¦†Æ5<nëTkª×ÅÞ¬-˜XÇ”€~oÄvÿ Þ¢sˆ“ŒïÏ§Ö½ê8¨*qö²Iú®†N:èe$Î£ ñNûCúÓõ)ì'0Ü®×ÆqœÕjo†©ïò'~¶AÍ%¥ÉLîGZ‚Yû±è)­&NØÆæõì)c'æsÞ²‚‚nH¥Ý¥¢ÿ 7ý1»ï!#CïËŸÒºï	Øêf¡i¬O£Ý\iñ0vqÛPqÚ¬x/F{mB{ÝZÂO.ÒÖK¸â™
+‰JŒŽ½Gâ»{›è¢×-4ù¯uu[¤V†ìò±Â¨M¼®p3Ÿ^kš¾!QýÅóiw¯ßó¡y:j6_i¸¿y-±oª[ðöìO	:údã<u«ëW·W…žêÃÄW²Ï‚19`b¹cÎc·®OJ¾¯¥ÚéW—×¦Ý_mt¡FJ˜ ìÌ£ß“^_âýxkqÇjžN›j¾]¼#¢¨þ#îy?qà©N¬Ò_ÃZê¿ÜÈ¸šçQ½2Lï=ÌïÔò]‰¯·?gŸ‡Ÿð„øIf¿ˆbø	g$rƒ²~æ¼öbø\uK¸üW®ÀE¤$ýŽ'ÞÝ7Ÿn¿}hyÖb±U=•?‚?‹þ¶7§UvQEx†EP\_|ºî³g¯húµÎ…âKHÌßÛ¢È$ˆœ˜å¸uÏ qƒ]¥çŸu-GZÓõø¦o.(¸´²K4´¶IGÝ‘‘I.Ã¶O½ã-^Õ§´¹ðçŠîtàVVAiÌ2ƒŽY#Ü~uÔÑ@†þÝÃâH<CãÜxW´FK=Öémoha™"RFâ8ÜI8§x‹Á:ôúíÖ­ájZ,·[LÖÓ[Ç{m¡AHß Î5ÞÑ@'‚>6‡¯Ýx‹_Öî¼CâKˆE·Ûg‰aHbÎvEð€žO?Ìæž«ðëSµ×µ[À¾*›Ã’jRy×¶­f—vòËÐÈˆØç¹šôz(Œð—Ãz–©¨ê·:ßˆu"¿kÔn!*¿u„Aè?ÃP8bŒ€øà‘Ò¹_†þ_è—²ÞGQ¼»–ööù¢òÍÄÒ6IÛ“€2z{×WE rßü%ÿ 	·…dÑ¾ÛöóÃ7åy¸òäWÆÝÃ®1Ö¯xÏÃo‹ü?q£ë»[K†W¶É©Êº7f¡þ•·E y|ÿ ¼a{dÚ^£ñ*ú]×Ê‘bÓaŠêHú3‚NqüArkÐ<?£ØøE³ÒtˆÞÂÒ1Q¯`=Orz“Ü’kBŠ ä¼iá}_Y½´¿ðÿ ŠõöÙ0©\[Ê	ï‰¸'ƒEchõñ5Ž½ãoOâ+Ý?sXÂ-ÖÞÝ˜`¿–¤î|t$ñùcÑ¨ 'Æ>:Î»mâX¹Ð<G_gûl¬©4YÏ—,MÃ€yü±CNøuw¯éú¿Ž|O?ˆ¥Ódó¬­VÑ--¡—´…î;x¯E¢€8øM_Äþ"ðö¹sáÿ CÙZê(–hç‡;¶KpÀAÈ?¦3mþjú¦±§_xïÅ²ëÐiÓ­Õµ„6Ign&_ºî±r:Œœ~¹ôª(–ñ·„¿á'Ô<3uöß²ÿ bêI¨íò·ùÛT™Ü6õëÏÒºš( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( Š( MMG*‡F*FAñ×íðŽO_OâÚ,ìZhPgìíëþïøWÙí¤Ö²[]Ä“A"•tqÃÐŠß‰©†¨ªÓz¡4¤¬ÏÌq‚vñž©Å•¥ÕÒ=°‘É,HÍnÁ#Ó=kÐ>:ü¹ð¥ÄÚÏ‡b{F,ð¨Ë[Ÿêµáõ÷˜L]Ê–Ú­ÓèrÊ.õÿ h¯«êKq§ÜG§j²™n6,‘‘‘*’px#!{çŠ_ßCÿ þ³pòy–òZÇa¬1ö™”¡.p60ÍqW/ììãµ¹ŠÞúÆ#†)ôlgÔ†MoÇ‰v8…]±Çý8·5Î°U”£í¤¹!­úŠç7¼—R¬0ÄóHÇ
+ˆ¥‰úLº³¹°¢š)"‘zÅ*•#ó¯Rð¯‡.tó2¢kW¤ÅmóÄ9ir8>´émôoêZíË\ÜXéËœnŸzQ†kßÖ®¶.•JÛH¯‰nCÏ<-qÕâ2y(À«Ç_C]úÝY/ž«x¾cyf0Yq•9'Ò¹GÀúŸÛµ8ì­šâÞÎFC!e±è	É?JäšF;]•‡c\øœÅÍMË™%ÒÉù]mø¢ã.]QY`7VòK|ŽHÀ¸Ú„6qóÖ«Þ]ZC,Ó^OÖä¶R69éŽýëÍwÌ½Wpö4yã£+Š…‚¢¤Iµê­§¯ê>gÑ‰gsa<1µ„«m
+c(ÌÏãùÖœš…ªÍ+›È^6ŒI¸rI6:çÖ¼¤NŸÞÇáKç'÷êêeøZ·½mšï}ýD§%Ðô´•Ü«_'2#Ã¯#žO°þ´“\XG ‚9må“	&âÄ œóœí^hgAüfšgðÒ¦x3º•oºÝïÐjrìzz´-,¯a,_,¥€ß×­YKËqm*5ÒyÆA"ëè˜À¯(ó%a…\sG–ìs$„û
+ÎybªïgòI~?äö6¼YsêDÄþd˜ùöœŒÿ ú«kÉ÷ÎÕôfÒÎ[‡Ùi’¾3„RÇô¦²29WR¬#W¯G>EN¬®’Ù~¯wøå­Ñ-……ÅãùV6ÒÌÿ Ý‰Ò»ëo6ËO»Õnå³»œ	‘d¶v‰G`Äã]&ƒ§YÙYMrö6Of—M,Q±{©Wz‚@# ŠÛ‡Qµº¸ŠÚÞþxì­­ßu½Ú;ïCÒà“ŒÎ¼ÌFe7/eEr¥øù	X®5x¢ñ¬Ò-Þ™te(|›i[ƒÿ îóùVdú…ž‘;Û>­°€“wvÍ$ÖÙÿ žlî3ššiÒÏÃ/¦ê/eg§,~\·H®× gî Îç©·5åÞ1×\Õhbò­áŒCc–*3ËçšçÀàÝy>tÔW]…~å¯x†U­­4ôd°µ+?Þ•‰$»{œŸÃØüøUsã­]/ïÑáÐm\3¹óÈþöõ>Æ“à¯Âÿ ß%æ ’Zh10/#ñü+íï_kèšMž‰¦Aa¦ÀZÂ¡Q`
+çÌó8BTÂü+voNŸVOci…¤VÖ‘$0D¡`( TôQ_6lQE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE 2h£ž'ŽdY#qµ•†A„WÌ_~ ÷:ß‚cË¼Öàú”ÿ +ê
++Z5êPš©MÙ¡4žŒüÆ¸‚kiÞ˜žíhÜ`ƒZ>×.´+Óqk±ƒ®É#‘C,‹èA¯·>(üÐ<wO$bËUåº…@,Úf¾EøƒðÇÄž¹q©Ù´¶Yù.áŽÙô5ö,îŽ&>Ë£sÿ #žTšÕ'†µ­úifŽálZhL·r1QÁ>SŒ²ôq[k¥iÛEÒ.Ú-àI ’8×Ì½'¹cŽž„÷¯	Ítz‹/4ÛQg<q^éàä[Î7÷R~é÷µ|«Ý~ÂZ=mÐÏÈõëssw¬ÝµýÜo§ï‚+ˆw o— ¬›dÓñkj°éVíx3kiqù%à“i ±È5Êé~1´ºÔí¬®-Æ¢˜d·eGó
+ !'<ÊºõÓ—vš ²{BÖ!ÆàÛ6	+!n£é·µyÒ¡<5£Uµu};ô<ïÇZ­ƒZ_iªÑÚÝ†Ì,så8b
+ç¸ã?Rð÷…µvÖâ{1Ž,±½€ÎÑïŽkÕãN»±Ó`¶·²¤ò[µÄè%|yŒBž	ù¶Œã*Ia]7S°ÝªØÛÇ%ó$P,L[ææQÆ}9ô®Èæ•!MS·¿æ‘Zx?[¼ƒÍƒMv$eŠ¯ àðMTÿ „Qû\–ßÙòùñÌ›9Ö½¹ÚåžúþÍïmgD’Õw›UÚ2…Ýîj5{Û‘¡K–ï‹,&ÞìN]¥GR@ÝŒíTÿ jM·ÍMha¥^_K$vv’Jè2Ê«È©ïô-OOµ†âòÊha—î3¿áø×¶Íoý–º„²8°×üÞÛDvî#~]1ü-éô¦êz£jºÝÍÐº†(^ímõæˆLà”)àg-ÿ |Ö‹7w¼!î«\G›xgáö¡­Z-ÛÜAk	F—l™ÞÑ¨Ë0 zgò­M#À¶ð]\ÜßÄËMKvš·r¢\g ž
+‘‚k¥×.¦Ño5+¨u_1’x´û[¤@W ¾ÐSÄ–-ªë)y&›È¨ö±HÑ,Šc\Éòõ$“ÅsÔÌq2vR½¿áÃ¡¡ÚE¡ø“PÓôçhF£f²ÙMŸ™HB¹ëØ­axóL“P»³Õ4ëWe½‹÷©}É“å“8õ`Æ»K;l4ÝBòE[«’4žCÎŒC8íÚ²äñEŽ†nHÕ®.¦–v¸6–R ä’FðA#“ÆÚª5êº±«J.NÖ}¾ñ™üHÖWØêwq$)t»bÉ‘ÆpJŽ½+[ÅÞ-·Ž$kÈ/u3[@–Ù1Û£cq,ÀÜÝ«Ì5‹æÔµK»éck‰ZR«Ðdç·¼à/øÖñaÐì]âÎâ@V4úšìÅÑÂÒšÄW•¼¼ÿ Q«½Ì ò¸TVwcÂ¨É?A_@üøs¬5¾±ãÚÞÀñYç'»z
+õ¿…?ô?y7÷ÀjZÀ ™e_–3þÈþµëÀ``WÎæ9ÕLUéÒ÷aø¿ShSQÕXYÛØYÃkg
+Co…HÑ@
+>•=W†jQE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE QE Ý´7vòAsKƒk#Œ‚*Z(Âþ þÎÞÖüÛ¯1Ò/['j.bcþï¯¼eð‹Æ2=æ˜÷6‹ÿ / ºãßŽ+ïÚk¢ºê=ˆÍwás,FJrÓ³Ø™AKsó£<0ìzÓÄ®¨f
+zŒ×è/Š~xGÄû›TÑíÚfÿ –Ñ®?òO~ÌtÅÛÃšÄö™ä%Êù£ôÅ{ô8–/JÐûŒÇÍÞñ%Þ¶èÜYÌC=¼ë¹	ñØð9­ûGögzbAs.Á$†MÃj°` cŽ@®¯Xýœüme¸ÙýŠýu!?†Mr:‡ÂŸØ–ó|7&;Ãqú
+ëXü²¼•I4Ÿšh‡NK¡ÓCñN¸C4··Ös:Ñù^q\ýà‘´xÇONñ†x÷·&]>Ê!ÙŽß0á9éÉë\LÞñ‰ôR2?½lÃúUøGõ€qý•ŸúàÔ•<¶ÎÕ¾{–]Ž÷þ#\Õ%›Zy­Ì&kK…Míåçý[lzs\Ü^+[_ê)›axì³Û±Ç™à®+2
+x†cˆ4-NCþÍ³é[ZÂÿ ßcÊðÖ¢ ÷–&AúŠµW-¤äùÖªÖ½Ã–O¡OÅºý¥ý¥žŸ¥[É±i?xÛ™º“ø ?
+u¯ŽµË{H […síŽG\º@s]¾‘û<xæø†¹†ÎÊ3ÞICøq^‡á¯Ùz(Þ#Öä¸Lv©åþ$×5LÛ/¥N1æKËüÊT¤Ïšµmbÿ VeÔîæ¹”p’=…tÞøcâß²6•¥J¶Íÿ /‚‘þx¯²¼-ðÁ¾*öDO:ôšÿ >+»Ž$‰BÆŠª:æ×â
+Ò\´" ¿EIu>øû7io—uâ¹Î§r9òm‰O¡ëº½çMÓ¬ô»8ítûx­­£Xã\(ü*ÕáÔ«:²æ¨îÍ¶ÁEVc
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+(¢€
+0(¢€"kxŸïF‡ê¢™ö+oùáýð*ÅÛB¿v$E  cŠZ( ÅQ@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@Q@ÿÙ
+endstream
+endobj
+2 0 obj
+<< /ProcSet [/PDF /Text /ImageB /ImageC /ImageI] /Font << /F1 3 0 R >> /XObject << /I0 8 0 R >> /ExtGState << /GS1 7 0 R >> >>
+endobj
+4 0 obj
+<</Type /Annot /Subtype /Link /Rect [2.835000 1.000000 19.005000 2.156000] /P 5 0 R /NM (0001-0000) /M (D:20240422045402+00'00') /F 4 /Border [0 0 0] /A <</S /URI /URI (http://www.tcpdf.org)>> /H /I>>
+endobj
+9 0 obj
+<< /Title (þÿ C a s h i e r   R e p o r t   \( S e l e c t e d   D a t e \)) /Author (þÿ A u t h o r   N a m e) /Subject (þÿ C a s h i e r   R e p o r t   \( S e l e c t e d   D a t e \)) /Keywords (þÿ T C P D F ,   P D F ,   C a s h i e r   R e p o r t ,   S e l e c t e d   D a t e) /Creator (þÿ T C P D F) /Producer (þÿ T C P D F   6 . 7 . 4   \( h t t p : / / w w w . t c p d f . o r g \)) /CreationDate (D:20240422045402+00'00') /ModDate (D:20240422045402+00'00') /Trapped /False >>
+endobj
+10 0 obj
+<< /Type /Metadata /Subtype /XML /Length 4798 >> stream
+<?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 4.2.1-c043 52.372728, 2009/01/18-15:08:04">
+	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<dc:format>application/pdf</dc:format>
+			<dc:title>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">Cashier Report (Selected Date)</rdf:li>
+				</rdf:Alt>
+			</dc:title>
+			<dc:creator>
+				<rdf:Seq>
+					<rdf:li>Author Name</rdf:li>
+				</rdf:Seq>
+			</dc:creator>
+			<dc:description>
+				<rdf:Alt>
+					<rdf:li xml:lang="x-default">Cashier Report (Selected Date)</rdf:li>
+				</rdf:Alt>
+			</dc:description>
+			<dc:subject>
+				<rdf:Bag>
+					<rdf:li>TCPDF, PDF, Cashier Report, Selected Date</rdf:li>
+				</rdf:Bag>
+			</dc:subject>
+		</rdf:Description>
+		<rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+			<xmp:CreateDate>2024-04-22T04:54:02+00:00</xmp:CreateDate>
+			<xmp:CreatorTool>TCPDF</xmp:CreatorTool>
+			<xmp:ModifyDate>2024-04-22T04:54:02+00:00</xmp:ModifyDate>
+			<xmp:MetadataDate>2024-04-22T04:54:02+00:00</xmp:MetadataDate>
+		</rdf:Description>
+		<rdf:Description rdf:about="" xmlns:pdf="http://ns.adobe.com/pdf/1.3/">
+			<pdf:Keywords>TCPDF, PDF, Cashier Report, Selected Date</pdf:Keywords>
+			<pdf:Producer>TCPDF 6.7.4 (http://www.tcpdf.org)</pdf:Producer>
+		</rdf:Description>
+		<rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/">
+			<xmpMM:DocumentID>uuid:8a909c00-3fc9-cba9-d25e-7511c857a25b</xmpMM:DocumentID>
+			<xmpMM:InstanceID>uuid:8a909c00-3fc9-cba9-d25e-7511c857a25b</xmpMM:InstanceID>
+		</rdf:Description>
+		<rdf:Description rdf:about="" xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/" xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema#" xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property#">
+			<pdfaExtension:schemas>
+				<rdf:Bag>
+					<rdf:li rdf:parseType="Resource">
+						<pdfaSchema:namespaceURI>http://ns.adobe.com/pdf/1.3/</pdfaSchema:namespaceURI>
+						<pdfaSchema:prefix>pdf</pdfaSchema:prefix>
+						<pdfaSchema:schema>Adobe PDF Schema</pdfaSchema:schema>
+						<pdfaSchema:property>
+							<rdf:Seq>
+								<rdf:li rdf:parseType="Resource">
+									<pdfaProperty:category>internal</pdfaProperty:category>
+									<pdfaProperty:description>Adobe PDF Schema</pdfaProperty:description>
+									<pdfaProperty:name>InstanceID</pdfaProperty:name>
+									<pdfaProperty:valueType>URI</pdfaProperty:valueType>
+								</rdf:li>
+							</rdf:Seq>
+						</pdfaSchema:property>
+					</rdf:li>
+					<rdf:li rdf:parseType="Resource">
+						<pdfaSchema:namespaceURI>http://ns.adobe.com/xap/1.0/mm/</pdfaSchema:namespaceURI>
+						<pdfaSchema:prefix>xmpMM</pdfaSchema:prefix>
+						<pdfaSchema:schema>XMP Media Management Schema</pdfaSchema:schema>
+						<pdfaSchema:property>
+							<rdf:Seq>
+								<rdf:li rdf:parseType="Resource">
+									<pdfaProperty:category>internal</pdfaProperty:category>
+									<pdfaProperty:description>UUID based identifier for specific incarnation of a document</pdfaProperty:description>
+									<pdfaProperty:name>InstanceID</pdfaProperty:name>
+									<pdfaProperty:valueType>URI</pdfaProperty:valueType>
+								</rdf:li>
+							</rdf:Seq>
+						</pdfaSchema:property>
+					</rdf:li>
+					<rdf:li rdf:parseType="Resource">
+						<pdfaSchema:namespaceURI>http://www.aiim.org/pdfa/ns/id/</pdfaSchema:namespaceURI>
+						<pdfaSchema:prefix>pdfaid</pdfaSchema:prefix>
+						<pdfaSchema:schema>PDF/A ID Schema</pdfaSchema:schema>
+						<pdfaSchema:property>
+							<rdf:Seq>
+								<rdf:li rdf:parseType="Resource">
+									<pdfaProperty:category>internal</pdfaProperty:category>
+									<pdfaProperty:description>Part of PDF/A standard</pdfaProperty:description>
+									<pdfaProperty:name>part</pdfaProperty:name>
+									<pdfaProperty:valueType>Integer</pdfaProperty:valueType>
+								</rdf:li>
+								<rdf:li rdf:parseType="Resource">
+									<pdfaProperty:category>internal</pdfaProperty:category>
+									<pdfaProperty:description>Amendment of PDF/A standard</pdfaProperty:description>
+									<pdfaProperty:name>amd</pdfaProperty:name>
+									<pdfaProperty:valueType>Text</pdfaProperty:valueType>
+								</rdf:li>
+								<rdf:li rdf:parseType="Resource">
+									<pdfaProperty:category>internal</pdfaProperty:category>
+									<pdfaProperty:description>Conformance level of PDF/A standard</pdfaProperty:description>
+									<pdfaProperty:name>conformance</pdfaProperty:name>
+									<pdfaProperty:valueType>Text</pdfaProperty:valueType>
+								</rdf:li>
+							</rdf:Seq>
+						</pdfaSchema:property>
+					</rdf:li>
+				</rdf:Bag>
+			</pdfaExtension:schemas>
+		</rdf:Description>
+	</rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>
+endstream
+endobj
+11 0 obj
+<< /Type /Catalog /Version /1.7 /Pages 1 0 R /Names << >> /ViewerPreferences << /Direction /L2R >> /PageLayout /SinglePage /PageMode /UseNone /OpenAction [5 0 R /FitH null] /Metadata 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000001840 00000 n 
+0000085031 00000 n 
+0000001986 00000 n 
+0000085173 00000 n 
+0000000015 00000 n 
+0000000483 00000 n 
+0000001899 00000 n 
+0000002092 00000 n 
+0000085389 00000 n 
+0000085892 00000 n 
+0000090773 00000 n 
+trailer
+<< /Size 12 /Root 11 0 R /Info 9 0 R /ID [ <8a909c003fc9cba9d25e7511c857a25b> <8a909c003fc9cba9d25e7511c857a25b> ] >>
+startxref
+90982
+%%EOF
